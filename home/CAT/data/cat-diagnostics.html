@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🐈‍⬛ The Cat – diagnostic mode</title>
+<title>🐈‍⬛ Tomcat – diagnostic mode</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -29,30 +29,30 @@
   }
   details summary::before { content: "▶ "; }
   details[open] summary::before { content: "▼ "; }
-  .pohadka-summary { background: #111; color: #fff; }
-  .pohadka-obsah {
+  .fairytale-summary { background: #111; color: #fff; }
+  .fairytale-content {
     padding: 1rem;
     font-size: 0.9rem;
     white-space: pre-line;
     border-top: 1px solid #111;
   }
-  .pohadka-img {
+  .fairytale-img {
     width: 100%; max-height: 180px; object-fit: contain;
     display: block; filter: grayscale(100%); padding: 0.5rem;
   }
-  .navod-obsah, .klic-obsah { padding: 0.7rem 1rem 1rem; font-size: 0.88rem; }
-  .navod-obsah p, .klic-obsah p { margin-bottom: 0.5rem; }
-  .navod-obsah ul { margin-left: 1.2rem; }
-  .navod-obsah li { margin-bottom: 0.3rem; }
-  .klic-uhel { border-bottom: 1px solid #eee; padding: 0.5rem 0; }
-  .klic-uhel:last-child { border-bottom: none; }
-  .klic-uhel strong { display: block; }
-  .klic-uhel em { color: #555; font-size: 0.82rem; }
-  .otazky {
+  .guide-content, .key-content { padding: 0.7rem 1rem 1rem; font-size: 0.88rem; }
+  .guide-content p, .key-content p { margin-bottom: 0.5rem; }
+  .guide-content ul { margin-left: 1.2rem; }
+  .guide-content li { margin-bottom: 0.3rem; }
+  .key-angle { border-bottom: 1px solid #eee; padding: 0.5rem 0; }
+  .key-angle:last-child { border-bottom: none; }
+  .key-angle strong { display: block; }
+  .key-angle em { color: #555; font-size: 0.82rem; }
+  .questions {
     background: #f5f5f5; border-left: 3px solid #111;
     padding: 0.8rem 1rem; margin-bottom: 1.5rem; font-size: 0.9rem;
   }
-  .otazky p { margin-bottom: 0.4rem; }
+  .questions p { margin-bottom: 0.4rem; }
   .setup { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.8rem; flex-wrap: wrap; }
   .setup label { font-size: 0.9rem; }
   .setup input[type=number] {
@@ -76,110 +76,112 @@
     flex-wrap: wrap; margin-bottom: 1.2rem;
   }
   .autosave-info { font-size: 0.78rem; color: #888; font-style: italic; flex: 1; }
-  .clen-details { border: 1px solid #111; margin-bottom: 1rem; }
-  .clen-summary {
+  .member-details { border: 1px solid #111; margin-bottom: 1rem; }
+  .member-summary {
     cursor: pointer; padding: 0.7rem 1rem; font-size: 0.9rem;
     list-style: none; display: flex; align-items: center; gap: 0.5rem;
     user-select: none; background: #fafafa;
   }
-  .clen-summary::before { content: "▶ "; font-size: 0.75rem; color: #555; }
-  .clen-details[open] .clen-summary::before { content: "▼ "; }
-  .clen-summary-jmeno { font-weight: bold; flex: 1; }
-  .clen-summary-stav { font-size: 0.75rem; color: #888; font-style: italic; }
-  .stav-hotovo { color: #2a7a2a !important; font-weight: bold; }
-  .clen-telo { padding: 1rem; border-top: 1px solid #eee; }
-  .clen-hlavicka { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.8rem; }
-  .clen-jmeno {
+  .member-summary::before { content: "▶ "; font-size: 0.75rem; color: #555; }
+  .member-details[open] .member-summary::before { content: "▼ "; }
+  .member-summary-name { font-weight: bold; flex: 1; }
+  .member-summary-status { font-size: 0.75rem; color: #888; font-style: italic; }
+  .status-done { color: #2a7a2a !important; font-weight: bold; }
+  .member-body { padding: 1rem; border-top: 1px solid #eee; }
+  .member-header { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.8rem; }
+  .member-name-input {
     flex: 1; padding: 0.3rem 0.5rem; border: 1px solid #aaa;
     font-family: Georgia, serif; font-size: 0.9rem;
   }
-  .otazka-radek { margin-bottom: 0.9rem; }
-  .otazka-radek label {
+  .question-row { margin-bottom: 0.9rem; }
+  .question-row label {
     display: block; font-size: 0.8rem; font-weight: bold;
     margin-bottom: 0.3rem; color: #444;
   }
-  .otazka-radek textarea {
+  .question-row textarea {
     width: 100%; padding: 0.4rem 0.5rem; border: 1px solid #ccc;
     font-family: Georgia, serif; font-size: 0.85rem;
     resize: vertical; min-height: 50px;
   }
-  .otazka-radek select {
+  .question-row select {
     width: 100%; padding: 0.4rem 0.5rem; border: 1px solid #111;
     font-family: Georgia, serif; font-size: 0.85rem;
     background: #fff; margin-top: 0.2rem;
   }
-  .select-napoveda {
+  .select-hint {
     display: block; font-size: 0.74rem; color: #999;
     font-style: italic; margin-top: 0.2rem;
   }
-  .vysledky { margin-top: 2rem; border-top: 2px solid #111; padding-top: 1rem; }
-  .mapa-tabulka { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-bottom: 1.2rem; }
-  .mapa-tabulka th, .mapa-tabulka td { border: 1px solid #ccc; padding: 0.4rem 0.6rem; text-align: left; }
-  .mapa-tabulka th { background: #111; color: #fff; }
-  .pretizeny { background: #f0f0f0; font-weight: bold; }
-  .deficitni { color: #777; }
-  .sekce-vysledku { margin-bottom: 1.5rem; }
-  .sekce-vysledku h3 { font-size: 0.95rem; border-bottom: 1px solid #ccc; padding-bottom: 0.3rem; margin-bottom: 0.7rem; }
-  .uhel-vysledek { margin-bottom: 0.8rem; font-size: 0.88rem; }
-  .uhel-vysledek strong { display: block; }
-  .uhel-doporuceni {
+  .results { margin-top: 2rem; border-top: 2px solid #111; padding-top: 1rem; }
+  .map-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-bottom: 1.2rem; }
+  .map-table th, .map-table td { border: 1px solid #ccc; padding: 0.4rem 0.6rem; text-align: left; }
+  .map-table th { background: #111; color: #fff; }
+  .overloaded { background: #f0f0f0; font-weight: bold; }
+  .deficit { color: #777; }
+  .results-section { margin-bottom: 1.5rem; }
+  .results-section h3 { font-size: 0.95rem; border-bottom: 1px solid #ccc; padding-bottom: 0.3rem; margin-bottom: 0.7rem; }
+  .angle-result { margin-bottom: 0.8rem; font-size: 0.88rem; }
+  .angle-result strong { display: block; }
+  .angle-recommendation {
     border-left: 2px solid #111; padding-left: 0.7rem;
     margin-top: 0.3rem; color: #333; font-style: italic;
   }
-  .generativni-odkaz {
+  .generative-link {
     margin-top: 1.5rem; font-size: 0.85rem;
     border-top: 1px solid #ccc; padding-top: 1rem;
   }
-  .generativni-odkaz a { color: #111; }
+  .generative-link a { color: #111; }
   @media print {
-    .btn, .setup, .autosave-row, .nav, .select-napoveda { display: none !important; }
+    .btn, .setup, .autosave-row, .nav, .select-hint { display: none !important; }
     details[open] summary { display: none; }
   }
 </style>
 </head>
 <body>
 
+<!-- FIX 1: correct navigation -->
 <div class="nav">
-  <a href="../">← The Cat</a> &nbsp;|&nbsp;
-  <a href="../../../">Do you want a mouse?</a>
+  <a href="../">← Tomcat</a> &nbsp;|&nbsp;
+  <a href="../../../">Want a mouse?</a>
 </div>
 
-<h1>🐈‍⬛ The Cat – diagnostic mode</h1>
-<p class="subtitle">The tyranny of premature closure in communication</p>
+<h1>🐈‍⬛ Tomcat – diagnostic mode</h1>
+<p style="font-size:0.85rem; color:#555; margin-bottom:1rem;">The tyranny of premature closure in communication</p>
 
 <details>
-  <summary>🐁 Instructions for the facilitator (the Mouse)</summary>
-  <div class="navod-obsah">
-    <p><strong>You are the Mouse.</strong> You sit, listen, and write things down. You do not judge who is right — you map how the team thinks.</p>
+  <summary>🐁 Facilitator guide (mouse)</summary>
+  <div class="guide-content">
+    <p><strong>You are the mouse.</strong> You sit, listen, take notes. You don't judge who is right — you map how the team thinks.</p>
     <p><strong>Important before starting:</strong></p>
     <ul>
-      <li>The Cat is not a person. It is a dysfunction — a way the team behaves at a certain moment.</li>
-      <li>The animals are dysfunctions. The girl on the card is speech. The animal is the disruption. The text between them is space for interpretation.</li>
-      <li>Angles are not personality types. The same person can look from a different angle on a different day. This is not about labeling people.</li>
-      <li>There is no right or wrong angle. The goal is to have as many as possible — to expand perspective.</li>
-      <li>You assign the angles — based on what you hear. Choose intuitively, according to the core of the response.</li>
-      <li>The notebook saves continuously — it survives closing the browser and refreshing the page.</li>
+      <li>Tomcat is not a person. It is a dysfunction — a way the team behaves at a certain moment.</li>
+      <li>The animals are dysfunctions. The girl on the card is speech. The animal is the dysfunction. The text between them is the space for interpretation.</li>
+      <li>Angles are not personality types. The same person looks from a different angle on a different day. This is not about putting people in boxes.</li>
+      <li>There is no right or wrong angle. The goal is to have as many as possible — to expand the view.</li>
+      <li>You assign them — based on what you hear. You choose the angle intuitively, based on the core of the answer.</li>
+      <li>The notebook saves continuously — it survives closing the browser or refreshing the page.</li>
     </ul>
-    <p>The key to the angles is always available — expand it below whenever needed.</p>
+    <p>The key to angles is always available — expand it below whenever you need it.</p>
   </div>
 </details>
 
+<!-- FIX 3: fairy tale without max-height, read it whole -->
 <details>
-  <summary class="pohadka-summary">📖 The Cat Story</summary>
-  <img src="kocour.jpg" alt="The Cat" class="pohadka-img" onerror="this.style.display='none'">
-  <div class="pohadka-obsah" id="story-text"></div>
+  <summary class="fairytale-summary">📖 The fairy tale about the tomcat</summary>
+  <img src="tomcat.jpg" alt="Tomcat" class="fairytale-img" onerror="this.style.display='none'">
+  <div class="fairytale-content" id="fairytale-text"></div>
 </details>
 
 <details>
-  <summary>🔑 Key to the angles (for assigning)</summary>
-  <div class="klic-obsah" id="angles-key-text"></div>
+  <summary>🔑 Key to angles (for assignment)</summary>
+  <div class="key-content" id="key-angles-text"></div>
 </details>
 
 <div class="questions">
-  <strong>Three questions for the team (The Cat):</strong>
+  <strong>Three questions for the team (Tomcat):</strong>
   <p><strong>Q1 – Meaning:</strong> What do you think is the main point or message of this story?</p>
-  <p><strong>Q2 – Impact:</strong> Which specific sentence, image, or moment struck you the most and why?</p>
-  <p><strong>Q3 – Application:</strong> If this story were advice, what would it tell you to do (or not do) in your work life?</p>
+  <p><strong>Q2 – Engagement:</strong> Which specific sentence, image, or moment engaged you the most and why?</p>
+  <p><strong>Q3 – Application:</strong> If this story were a guide or advice, what would it advise you to do (or not do) in your work life?</p>
 </div>
 
 <div class="setup">
@@ -188,8 +190,9 @@
   <button class="btn" onclick="createCards()">Create notebook</button>
 </div>
 
+<!-- FIX 5: autosave info + deletion -->
 <div class="autosave-row" id="autosave-row">
-  <span class="autosave-info">💾 The notebook saves continuously — it survives closing the browser.</span>
+  <span class="autosave-info">💾 Notebook saves continuously — it survives closing the browser.</span>
   <button class="btn-danger" onclick="deleteNotebook()">🗑 Delete notebook</button>
 </div>
 
@@ -201,161 +204,179 @@
 
 <div id="results" class="results" style="display:none;"></div>
 
-<p class="generative-link">
-  🔮 Want to generate a new workshop based on the cognitive map?
-  Try <a href="generativni.html">generative mode</a>.
-</p>
+<p class="generative-link">🔮 Want to generate a new workshop based on the cognitive map? Try <a href="generative.html">generative mode</a>.</p>
+
 <script>
-const STORY_TEXT = `ABOUT THE CAT
-How the cat swallowed two ladybugs and burped periods for half an hour
+const FAIRYTALE_TEXT = `ABOUT THE TOMCAT
+How the tomcat ate two ladybugs and hiccupped dots for half an hour
 _________________
 
-He swallowed two — not three, not one — two — exactly — 14 periods and it took half an hour — 30 minutes — exactly.
+He ate two — not three, not one — two — exactly — 14 dots and it took half an hour — 30 minutes — exactly.
 
-As it began, so it ended.
-All at once.
+It came as it went.
+Bang bang.
 
-Snap and gulp and munch — or something like that — and finally — smack, smack — twice — exactly.
+Snap and gulp and munch — or something like that and finally — smack, smack — twice — exactly.
 
-There once lived two ladybugs, each with seven dots. When a cat saw them, there was trouble.
+There were two ladybugs living, each had seven dots, when a tomcat saw them it was a scramble.
 At least for them.
 
 After 14 dots
-in a single blink
-the earth fell silent.
+in one moment
+the earth collapsed.
 
-At least inside the cat’s belly.
+At least for the tomcat and his insides.
 
-But the mouse, always curious, was there.
-Since childhood she would wander
-and wherever she could, she would ask:
-Where did the dots on the ladybugs come from?
+But the mouse, always curious.
+Since childhood she used to go
+and where she could she used to ask,
+where did the dots on the ladybugs come from?
 What are they for?
-Why don’t they create proper camouflage instead?
+Why don't they create proper camouflage instead?
 
-And that precise math…
-Who among those who meet them actually counts so exactly?
+And that exact math..
+Who from those who come into contact with them counts so precisely?
 
-And that day — suddenly — it happened.
-And the mouse had her answer.
+Well and that day — suddenly — it happened
+and the mouse had her answer.
 
-The cat smacked his lips
+The tomcat smacked
 and then again
 and right after that
 it began.
 
-For half an hour it was recorded — exactly.
-The cat burped periods and finished sentences!
-Sometimes entire compound sentences!!
+Half an hour and it was recorded — exactly.
+The tomcat hiccupped dots and finished sentences!
+Sometimes whole sentences!!
 
-But by doing so he kept jumping into people’s speech,
-by finishing what they had not finished.
+Only that at the same time he was jumping into people's speech,
+by finishing for them what they didn't finish.
 
-He jumped into everyone’s speech with the end of a sentence
+He jumped into everyone's speech with the end of a sentence
 
-but always just a little
+but always by a little
 
-sometimes quite a lot
+sometimes by quite a lot
 
-earlier than the sentence was originally meant to end
+before the sentence was originally supposed to end
 
-or — than it was meant to end.
+or — before the sentence was originally supposed to end.
 
-And for the entire half hour no one could
-finish.
-It was impossible.
+And for the whole half hour nobody could then
+no — finish anything.
+It wasn't possible.
 
-Before anyone could get there,
-the cat ended their sentence.
+For everyone before
+they got to it,
+the tomcat ended the sentence.
 Immediately.
 
-The cat laughed about it,
-but kept burping.
-And he burped until he stopped.
+The tomcat laughed at it,
+but hiccupped on.
+And hiccupped until he finished.
 Imagine that:
-He finished a sentence and then he finished burping.
+He finished a sentence and then finished hiccupping.
 
-And people could once again finish their own sentences.
+And people could again finish their sentences themselves.
 Immediately.
 
-But, as sometimes happens,
-even though no one knew what,
+Only, as it sometimes happens,
+even though nobody knew what,
 everyone knew
-that something was not the same.
+that something wasn't the same.
 
-And what is once not the same today,
-is never the same again.
+And what once isn't the same today,
+once isn't the same never.
 
-Only unfinished sentences tend to be all the same. Once, today, and tomorrow.
+Only unfinished sentences are all the same. Once, today and tomorrow.
 
-Ladybugs carry unfinished sentence endings. Things that remain unswallowed.
+Ladybugs have unfinished sentence ends on them. Things that are unswallowed.
 
-The cat did not know this — and swallowed two.
-But the swallowed endings he burped back up
+The tomcat didn't know that — and he swallowed two.
+But swallowed ends he hiccupped back
 and people learned
 that not everything can be swallowed.
-And that a period is sometimes stronger than an entire sentence.
+And that a dot is sometimes stronger than a whole sentence.
 
-The cat was fed, and the mouse and the sentences remained whole.
+The tomcat ate his fill and the mouse and sentences remained whole.
 Thank God for that.
-The happiness of the two ladybugs returned.
+The luck of two ladybugs returned.
 
-But only the cat and the little mouse noticed.
-And neither of them said a word.
+But only the tomcat and the little mouse noticed it.
+And neither of them said anything.
 
 THE END`;
 
-const ANGLE_KEY = [
-  { id:1,  name:"Absurd",       desc:"Sees paradox and contradiction. The world stopped making sense — and that suits it." },
-  { id:2,  name:"Linguistic",   desc:"Hears words, rhythm, sound. Form is content." },
-  { id:3,  name:"Ironic",       desc:"Sees the gap between intention and result. Light sarcasm, bitter smile." },
-  { id:4,  name:"Philosophical",desc:"Looks for meaning behind meaning. Answers question after question." },
-  { id:5,  name:"Surreal",      desc:"Connects the unconnectable. Thinks in images, not arguments." },
-  { id:6,  name:"Naive",        desc:"Asks simply, answers directly. Pure impression without rationalization." },
-  { id:7,  name:"Introspective",desc:"The story becomes a gateway to self-knowledge." },
-  { id:8,  name:"Concrete",     desc:"Sticks to facts. Plot is plot. No need for hidden meaning." },
-  { id:9,  name:"Analogical",   desc:"Seeks patterns. Relates it to something already known." },
-  { id:10, name:"Associative",  desc:"Thinks in networks. One word triggers ten more." },
-  { id:11, name:"Metaphorical", desc:"Everything is a symbol of something bigger." },
-  { id:12, name:"Grotesque",    desc:"Sees exaggeration and dark comedy. Laughter that scratches." }
+const KEY_ANGLES = [
+  { id:1,  name:"Absurdist",       description:"Looks for contradiction and paradox. The world stopped making sense — and that suits him." },
+  { id:2,  name:"Linguistic",       description:"Hears words, rhythm, sound. Form is content for him." },
+  { id:3,  name:"Ironic",       description:"Sees the gap between intention and result. Light sarcasm, bitter smile." },
+  { id:4,  name:"Philosophical",    description:"Looks for meaning behind meaning. Answers the question behind the question." },
+  { id:5,  name:"Surrealist", description:"Connects the unconnectable. Thinks in images, not arguments." },
+  { id:6,  name:"Naive",         description:"Asks simply, answers directly. Pure impression without rationalization." },
+  { id:7,  name:"Introspective", description:"The story is an excuse for self-knowledge. Speaks about himself through the fairy tale." },
+  { id:8,  name:"Concrete",      description:"Sticks to facts. Plot is plot. Doesn't need hidden meanings." },
+  { id:9,  name:"Analogical",     description:"Looks for patterns. Compares to something he already knows." },
+  { id:10, name:"Associative",      description:"Thinks in networks. One word triggers ten others." },
+  { id:11, name:"Metaphorical",    description:"Everything is a symbol of something bigger. Decodes hidden meanings." },
+  { id:12, name:"Grotesque",      description:"Sees the exaggerated and darkly comic. Laughter that scratches." }
 ];
 
-const SAVE_KEY = 'cat_diagnostic_v1';
+const angles = [
+  { id:1,  emoji:"🔚", name:"Physical end of sentence",
+    q3task:"Introduce the 'three dots' rule. When someone hints at something, they must have space to develop it. The first one to say 'dot' just summarizes — NOT adds their own conclusion." },
+  { id:2,  emoji:"⏱️", name:"Quasi-efficiency",
+    q3task:"Measure meeting success not by length, but by the number of open questions at the end. If all points are 'closed', we were probably tomcats." },
+  { id:3,  emoji:"🐞", name:"Unswallowable content",
+    q3task:"Create a 'wall of unswallowed'. Anonymous place for things that weren't said. Regularly include them in the agenda." },
+  { id:4,  emoji:"🐀", name:"Observant mouse",
+    q3task:"Appoint a 'mouse' for each discussion. Just observes who speaks, who is interrupted, and at the end shares observations without judgment." },
+  { id:5,  emoji:"🕳️", name:"Permanent change",
+    q3task:"Intentionally create 'unfinished sentences'. The leader starts a thought and invites others to finish it." },
+  { id:6,  emoji:"🔢", name:"Tyranny of metrics",
+    q3task:"Add a qualitative story to every metric. Not '14 tasks done', but 'what did those 14 dots mean to us?'." },
+  { id:7,  emoji:"🦾", name:"Violent consensus",
+    q3task:"Mechanism of 'silence of consent': silence after a decision automatically means DISAGREEMENT. Forces people to actively say 'I agree'." },
+  { id:8,  emoji:"🏁", name:"Competition instead of collaboration",
+    q3task:"Introduce 'speaker's round'. Physical object (talking stick) — only the one holding it speaks." },
+  { id:9,  emoji:"🎁", name:"Unfinished as gift",
+    q3task:"Exercise 'intentionally not finishing': 'Our problem is like…' — forbid finishing. Just generate beginnings." },
+  { id:10, emoji:"💔", name:"Communication trauma",
+    q3task:"'Audit of communication safety': Do I feel safe expressing disagreement? Am I interrupted? Results → rules." },
+  { id:11, emoji:"⚫", name:"Strong dot",
+    q3task:"When closing decisions, don't ask 'Is it clear?', but 'Who feels their concerns weren't heard?'." },
+  { id:12, emoji:"🍀", name:"Returned luck",
+    q3task:"'Ladybug ritual': whenever someone feels silenced, they place a ladybug on the table. Everyone slows down and lets them finish." }
+];
 
-document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('story-text').textContent = STORY_TEXT;
-  document.getElementById('angles-key-text').innerHTML =
-    ANGLE_KEY.map(a =>
-      `<div class="klic-uhel">
-        <strong>${a.id}. ${a.name}</strong>
-        <em>${a.desc}</em>
-      </div>`
-    ).join('');
-  loadSaved();
-});
+document.getElementById('fairytale-text').textContent = FAIRYTALE_TEXT;
+document.getElementById('key-angles-text').innerHTML = KEY_ANGLES.map(a => `
+  <div class="key-angle">
+    <strong>${a.id}. ${a.name}</strong>
+    <em>${a.description}</em>
+  </div>
+`).join('');
+
+const SAVE_KEY = 'tomcat_diagnostic_v1';
 
 function save() {
   const count = parseInt(document.getElementById('member-count').value) || 0;
   if (count < 1) return;
-
   const data = { count, members: [] };
-
   for (let i = 1; i <= count; i++) {
     const nameEl = document.getElementById(`name-${i}`);
     if (!nameEl) continue;
-
     data.members.push({
       name: nameEl.value,
       a1: document.getElementById(`answer-${i}-1`)?.value || '',
       a2: document.getElementById(`answer-${i}-2`)?.value || '',
       a3: document.getElementById(`answer-${i}-3`)?.value || '',
-      g1: document.getElementById(`angle-${i}-1`)?.value || '',
-      g2: document.getElementById(`angle-${i}-2`)?.value || '',
-      g3: document.getElementById(`angle-${i}-3`)?.value || ''
+      ang1: document.getElementById(`angle-${i}-1`)?.value || '',
+      ang2: document.getElementById(`angle-${i}-2`)?.value || '',
+      ang3: document.getElementById(`angle-${i}-3`)?.value || '',
     });
   }
-
-  try { localStorage.setItem(SAVE_KEY, JSON.stringify(data)); } catch(e){}
+  try { localStorage.setItem(SAVE_KEY, JSON.stringify(data)); } catch(e) {}
 }
 
 function loadSaved() {
@@ -368,74 +389,197 @@ function loadSaved() {
     createCardsHTML(data.count);
     data.members.forEach((m, idx) => {
       const i = idx + 1;
-      document.getElementById(`name-${i}`).value = m.name || '';
+      const nameEl = document.getElementById(`name-${i}`);
+      if (!nameEl) return;
+      nameEl.value = m.name || '';
       document.getElementById(`answer-${i}-1`).value = m.a1 || '';
       document.getElementById(`answer-${i}-2`).value = m.a2 || '';
       document.getElementById(`answer-${i}-3`).value = m.a3 || '';
-      document.getElementById(`angle-${i}-1`).value = m.g1 || '';
-      document.getElementById(`angle-${i}-2`).value = m.g2 || '';
-      document.getElementById(`angle-${i}-3`).value = m.g3 || '';
+      document.getElementById(`angle-${i}-1`).value = m.ang1 || '';
+      document.getElementById(`angle-${i}-2`).value = m.ang2 || '';
+      document.getElementById(`angle-${i}-3`).value = m.ang3 || '';
+      updateStatus(i);
     });
     document.getElementById('evaluate-button').style.display = 'block';
     document.getElementById('autosave-row').style.display = 'flex';
-  } catch(e){}
+  } catch(e) {}
 }
 
 function deleteNotebook() {
-  if (!confirm('Delete the entire notebook? This action cannot be undone.')) return;
-  localStorage.removeItem(SAVE_KEY);
-  location.reload();
+  if (!confirm('Really delete the entire notebook? This action cannot be undone.')) return;
+  try { localStorage.removeItem(SAVE_KEY); } catch(e) {}
+  document.getElementById('member-cards').innerHTML = '';
+  document.getElementById('evaluate-button').style.display = 'none';
+  document.getElementById('results').style.display = 'none';
+  document.getElementById('autosave-row').style.display = 'none';
+}
+
+function updateStatus(i) {
+  const name = document.getElementById(`name-${i}`)?.value?.trim();
+  const ang1 = document.getElementById(`angle-${i}-1`)?.value;
+  const ang2 = document.getElementById(`angle-${i}-2`)?.value;
+  const ang3 = document.getElementById(`angle-${i}-3`)?.value;
+  const assigned = [ang1, ang2, ang3].filter(Boolean).length;
+  const titleEl = document.getElementById(`title-${i}`);
+  const statusEl = document.getElementById(`status-${i}`);
+  if (titleEl) titleEl.textContent = name || `Member ${i}`;
+  if (statusEl) {
+    if (assigned === 3) {
+      statusEl.textContent = '✓ done';
+      statusEl.className = 'member-summary-status status-done';
+    } else if (assigned > 0) {
+      statusEl.textContent = `${assigned}/3 assigned`;
+      statusEl.className = 'member-summary-status';
+    } else {
+      statusEl.textContent = 'empty';
+      statusEl.className = 'member-summary-status';
+    }
+  }
+}
+
+const HINT_TEXT = '↑ Mouse selects intuitively based on the core of the answer — see Key above';
+
+function createCardsHTML(count) {
+  const options = angles.map(a =>
+    `<option value="${a.id}">${a.id}. ${a.emoji} ${a.name}</option>`
+  ).join('');
+  const sel = `<option value="">— not selected —</option>${options}`;
+  let html = '';
+  for (let i = 1; i <= count; i++) {
+    html += `
+    <details class="member-details" id="card-${i}" open>
+      <summary class="member-summary">
+        <span class="member-summary-name" id="title-${i}">Member ${i}</span>
+        <span class="member-summary-status" id="status-${i}">empty</span>
+      </summary>
+      <div class="member-body">
+        <div class="member-header">
+          <input class="member-name-input" type="text" id="name-${i}"
+            placeholder="name / initials (optional)"
+            oninput="updateStatus(${i}); save();">
+        </div>
+        <div class="question-row">
+          <label>Q1 – Meaning (what they said):</label>
+          <textarea id="answer-${i}-1" placeholder="Write answer…" oninput="save();"></textarea>
+          <select id="angle-${i}-1" onchange="updateStatus(${i}); save();">${sel}</select>
+          <span class="select-hint">${HINT_TEXT}</span>
+        </div>
+        <div class="question-row">
+          <label>Q2 – Engagement (what they said):</label>
+          <textarea id="answer-${i}-2" placeholder="Write answer…" oninput="save();"></textarea>
+          <select id="angle-${i}-2" onchange="updateStatus(${i}); save();">${sel}</select>
+          <span class="select-hint">${HINT_TEXT}</span>
+        </div>
+        <div class="question-row">
+          <label>Q3 – Application (what they said):</label>
+          <textarea id="answer-${i}-3" placeholder="Write answer…" oninput="save();"></textarea>
+          <select id="angle-${i}-3" onchange="updateStatus(${i}); save();">${sel}</select>
+          <span class="select-hint">${HINT_TEXT}</span>
+        </div>
+      </div>
+    </details>`;
+  }
+  document.getElementById('member-cards').innerHTML = html;
 }
 
 function createCards() {
   const count = parseInt(document.getElementById('member-count').value);
   if (!count || count < 1) return;
-  localStorage.removeItem(SAVE_KEY);
+  try { localStorage.removeItem(SAVE_KEY); } catch(e) {}
   createCardsHTML(count);
   document.getElementById('evaluate-button').style.display = 'block';
+  document.getElementById('results').style.display = 'none';
   document.getElementById('autosave-row').style.display = 'flex';
 }
 
-function createCardsHTML(count) {
-  const options = ANGLE_KEY.map(a =>
-    `<option value="${a.id}">${a.id}. ${a.name}</option>`
-  ).join('');
-
-  const selectBase = `<option value="">— not selected —</option>${options}`;
-
-  let html = '';
-
+function evaluate() {
+  const count = parseInt(document.getElementById('member-count').value);
+  const counts = {};
+  angles.forEach(a => counts[a.id] = { count:0, name:a.name, emoji:a.emoji, q3task:a.q3task });
+  let total = 0;
+  const memberDetails = [];
   for (let i = 1; i <= count; i++) {
-    html += `
-    <details class="clen-details" open>
-      <summary class="clen-summary">
-        <span class="clen-summary-jmeno">Member ${i}</span>
-        <span class="clen-summary-stav">not filled</span>
-      </summary>
-      <div class="clen-telo">
-        <div class="clen-hlavicka">
-          <input class="clen-jmeno" type="text" id="name-${i}"
-            placeholder="name / initials (optional)"
-            oninput="save();">
-        </div>
+    const name = document.getElementById(`name-${i}`)?.value?.trim() || `Member ${i}`;
+    const memberAngles = [];
+    for (let q = 1; q <= 3; q++) {
+      const val = document.getElementById(`angle-${i}-${q}`)?.value;
+      if (val) { counts[val].count++; total++; memberAngles.push(parseInt(val)); }
+    }
+    memberDetails.push({ name, angles: memberAngles });
+  }
+  if (total === 0) { alert('Assign at least one angle before evaluating.'); return; }
 
-        ${[1,2,3].map(q => `
-        <div class="otazka-radek">
-          <label>Q${q}:</label>
-          <textarea id="answer-${i}-${q}" placeholder="Write the response…" oninput="save();"></textarea>
-          <select id="angle-${i}-${q}" onchange="save();">${selectBase}</select>
-        </div>`).join('')}
+  const overloaded = [], deficit = [], balanced = [], unused = [];
+  angles.forEach(a => {
+    const c = counts[a.id];
+    c.percentage = total > 0 ? c.count / total : 0;
+    if (c.count === 0)           unused.push(c);
+    else if (c.percentage >= 0.30) overloaded.push(c);
+    else if (c.percentage <= 0.10) deficit.push(c);
+    else                          balanced.push(c);
+  });
 
-      </div>
-    </details>`;
+  let html = `<h2>🧠 Team cognitive map</h2>`;
+  html += `<p style="font-size:0.85rem;color:#555;margin-bottom:1rem;">Total assigned: <strong>${total}</strong> angles from <strong>${count}</strong> members</p>`;
+  html += `<table class="map-table"><tr><th>Angle</th><th>Count</th><th>%</th><th>Type</th></tr>`;
+  angles.map(a => counts[a.id]).sort((a,b) => b.count - a.count).forEach(c => {
+    const pct = Math.round(c.percentage * 100);
+    let type = '◇ balanced', cls = '';
+    if (c.count === 0)           { type = '—';           cls = 'deficit'; }
+    else if (c.percentage >= 0.30) { type = '▲ overloaded'; cls = 'overloaded'; }
+    else if (c.percentage <= 0.10) { type = '▽ deficit'; cls = 'deficit'; }
+    html += `<tr class="${cls}"><td>${c.emoji} ${c.name}</td><td>${c.count}×</td><td>${pct}%</td><td>${type}</td></tr>`;
+  });
+  html += `</table>`;
+
+  if (overloaded.length > 0) {
+    html += `<div class="results-section"><h3>▲ Overloaded angles (over 30 %)</h3>`;
+    html += `<p style="font-size:0.85rem;margin-bottom:0.7rem;">The team looks the same way. What they see, they see well. What they don't see, doesn't exist.</p>`;
+    overloaded.forEach(o => {
+      const counterweights = deficit.concat(unused).slice(0, 2);
+      html += `<div class="angle-result"><strong>${o.emoji} ${o.name} – ${o.count}× (${Math.round(o.percentage*100)}%)</strong>`;
+      if (counterweights.length > 0) {
+        html += `<div class="angle-recommendation">Deficit training — task for people with this angle:<br>`;
+        counterweights.forEach(d => { html += `→ <strong>${d.emoji} ${d.name}:</strong> ${d.q3task}<br>`; });
+        html += `</div>`;
+      }
+      html += `</div>`;
+    });
+    html += `</div>`;
   }
 
-  document.getElementById('member-cards').innerHTML = html;
+  const allDeficit = deficit.concat(unused);
+  if (allDeficit.length > 0) {
+    html += `<div class="results-section"><h3>▽ Deficit angles (under 10 % or none)</h3>`;
+    html += `<p style="font-size:0.85rem;margin-bottom:0.7rem;">Blind spots. Perspectives the team doesn't use, even though it needs them.</p>`;
+    allDeficit.forEach(d => {
+      html += `<div class="angle-result"><strong>${d.emoji} ${d.name} – ${d.count}×</strong>`;
+      html += `<div class="angle-recommendation">Task suggestion: ${d.q3task}</div></div>`;
+    });
+    html += `</div>`;
+  }
+
+  if (balanced.length > 0) {
+    html += `<div class="results-section"><h3>◇ Balanced angles – bridges</h3>`;
+    html += `<p style="font-size:0.85rem;margin-bottom:0.5rem;">These people can be interpreters between perspectives.</p>`;
+    const balancedIds = balanced.map(b => angles.find(a => a.name === b.name)?.id);
+    memberDetails.forEach(m => {
+      if (m.angles.some(aid => balancedIds.includes(aid))) {
+        html += `<span style="font-size:0.85rem;">→ ${m.name} &nbsp;</span>`;
+      }
+    });
+    html += `</div>`;
+  }
+
+  html += `<button class="btn btn-outline" style="margin-top:1rem;" onclick="window.print()">🖨 Print results</button>`;
+  const el = document.getElementById('results');
+  el.innerHTML = html;
+  el.style.display = 'block';
+  el.scrollIntoView({ behavior: 'smooth' });
 }
 
-function evaluate() {
-  alert("Evaluation logic preserved. (Full statistical logic remains identical to original structure.)");
-}
+window.addEventListener('DOMContentLoaded', loadSaved);
 </script>
+
 </body>
 </html>

@@ -136,7 +136,7 @@ Why?
 | <img src="card_previews/Peacock/peacock.jpg" width="80"><br>**Peacock** | We see the project through ourselves — and stop seeing reality | [Preview](./card_previews/Peacock/) | $1,600 |
 | <img src="card_previews/Fly/fly.jpg" width="80"><br>**Fly** | Chaos has become the norm — and nobody notices anymore | [Preview](./card_previews/Fly/) | $1,600 |
 | <img src="card_previews/Fish/fish.jpg" width="80"><br>**Fish** | We talk a lot, but nothing changes | [Preview](./card_previews/Fish/) | $1,600 |
-| <img src="card_previews/Goose/goose.jpg" width="80"><br>**Geese** | Everyone shouts "we" — but everyone only thinks of themselves | [Preview](./card_previews/Goose/) | $1,600 |
+| <img src="card_previews/Geese/goose.jpg" width="80"><br>**Geese** | Everyone shouts "we" — but everyone only thinks of themselves | [Preview](./card_previews/Geese/) | $1,600 |
 | <img src="card_previews/Antlers/antlers.jpg" width="80"><br>**Antlers** | We define ourselves by what we used to do — not by who we are | [Preview](./card_previews/Antlers/) | $1,600 |
 | <img src="card_previews/Sparrow/sparrow.jpg" width="80"><br>**Sparrow** | The temporary solution that will be here forever | [Preview](./card_previews/Sparrow/) | $1,600 |
 | <img src="card_previews/Donkey/donkey.jpg" width="80"><br>**Donkey** | So many options — that we end up choosing none | [Preview](./card_previews/Donkey/) | $1,600 |

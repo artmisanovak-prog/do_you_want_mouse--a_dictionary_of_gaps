@@ -9,7 +9,7 @@ Normalized chaos and blindness to own problem. The team (or environment) has bee
 
 | | |
 |---|---|
-| **Card** | `home/card_previews/fly.jpg` |
+| **Card** | `home/card_previews/Fly/fly.jpg` |
 | **Card text** | `fly in the mess` |
 | **Core dysfunction** | Normalized chaos and blindness to own problem |
 | **Key question** | "What is our 'invisible courtyard' and what could be our 'fly'?" |

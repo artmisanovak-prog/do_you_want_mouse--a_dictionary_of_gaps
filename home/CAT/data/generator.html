@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Statement – Tomcat</title>
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            max-width: 700px;
+            margin: 3rem auto;
+            padding: 0 20px;
+            background: #fafaf8;
+            color: #1e1e1e;
+            text-align: center;
+        }
+        h1 {
+            font-weight: 400;
+            border-bottom: 2px dashed #aaa;
+            padding-bottom: 0.5rem;
+        }
+
+        .nav {
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+        }
+        .nav a {
+            color: #111;
+        }
+      
+        .statement-box {
+            background: white;
+            border-radius: 30px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            font-size: 1.3rem;
+            line-height: 1.6;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        button {
+            background: #2c3e50;
+            border: none;
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            border: 1px solid #1a2632;
+            transition: 0.1s;
+        }
+        button:hover {
+            background: #1f2d3a;
+        }
+        .footer {
+            margin-top: 2rem;
+            color: #6f6f6f;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="nav">
+        <a href="../">← Tomcat</a> &nbsp;|&nbsp;
+        <a href="../../../README.md">Do you want a mouse?</a>
+    </div>
+
+    <h1 id="card-title">🐈‍⬛ Tomcat – Random Statement</h1>
+    <div class="statement-box" id="statement">
+        Loading...
+    </div>
+    <button id="generate-btn">Another Statement</button>
+    <div class="footer">
+        One of 36 sentences. No theory, just inspiration.
+    </div>
+
+    <script>
+        // █████████████████████████████████████████████████
+        // DATA FOR THE TOMCAT CARD – inserted directly
+        // For another card, simply replace this object
+        // █████████████████████████████████████████████████
+        const cardData = {
+            "card": "Tomcat",
+            "statements": [
+                "The Tomcat became a slave to the full stop. He believed value was in ending, not in meaning.",
+                "In our meetings, when someone says 'sooo...' and is immediately interrupted by a solution.",
+                "Introduce the 'three dots' rule (...). The first person who says 'full stop' is only summarizing.",
+                "The Tomcat thought he was speeding up the work. 'Half an hour and done!' But in reality he replaced a shared process with a monologue.",
+                "When a project manager pushes for quick 'checking off' agenda items without reaching the essence.",
+                "Measure the success of a meeting not by length, but by the number of open questions at the end.",
+                "Ladybugs carry 'unswallowed sentence endings'. These are unpleasant, unprocessed aspects of the problem.",
+                "When we suppress 'elephants in the room' – sensitive topics, emotional frustration.",
+                "Create an 'unswallowed board'. An anonymous place for things that were not said.",
+                "The Mouse is a metaphor for a facilitator or a quiet member. They see the dysfunction but lack the power to stop it.",
+                "When there are introverts in the team who need more time to formulate but are interrupted.",
+                "Appoint a 'mouse' for every important discussion. They only observe and share what they saw at the end.",
+                "Even when the Tomcat stopped, 'something wasn’t the same'. A one-time disruption leaves a scar.",
+                "After a toxic meeting, the team becomes passive, waiting for instructions. Trust is gone.",
+                "A leader must consciously create unfinished sentences and invite others to complete them.",
+                "The story is obsessed with exact numbers: 2 ladybugs, 14 dots, 30 minutes. A parody of managerial reports.",
+                "When retrospectives focus only on 'done/not done', not 'how we feel'.",
+                "Add a qualitative story to every metric: 'Which 14 dots did we burp out?'.",
+                "By finishing others’ sentences, the Tomcat forced agreement. People stopped speaking.",
+                "When a boss says 'So we all agree?' and silence is interpreted as agreement.",
+                "Use the 'silence means disagreement' mechanism – silence means NO.",
+                "The Tomcat competed: 'who finishes the sentence first'. Communication becomes a race, not collaboration.",
+                "In teams where individual performance is rewarded, interrupting becomes a form of competition.",
+                "Introduce a 'speaking circle' – only the person holding the object may speak.",
+                "Unfinished sentences tend to be all the same. Once a sentence is finished, it is dead.",
+                "When the team seeks solutions immediately instead of staying with the problem.",
+                "Exercise: 'Our problem is like...' Forbid finishing, only beginnings of metaphors.",
+                "The Tomcat jumped into people’s speech. Communication became a trauma, the team 'flattened'.",
+                "When meetings are a source of stress, people are afraid to speak.",
+                "Conduct a communication safety audit: anonymous questionnaire.",
+                "A full stop is sometimes stronger than the whole sentence. Formal closure carries more weight than discussion.",
+                "When we get lost in discussion and someone says 'So decided!' out of exhaustion.",
+                "When closing, ask: 'Who feels their voice wasn’t heard?'.",
+                "The story ends with hope: the ladybugs’ happiness returned. But it requires silent understanding.",
+                "When a team slowly heals after trauma, trust is fragile.",
+                "Introduce the ladybug ritual – a quiet symbol for slowing down and listening."
+            ]
+        };
+
+        // Script logic – unchanged, only works with cardData
+        document.getElementById('card-title').innerHTML = `🐱 ${cardData.card} – Random Statement`;
+
+        const statements = cardData.statements;
+        const statementEl = document.getElementById('statement');
+        const btn = document.getElementById('generate-btn');
+
+        function generateRandom() {
+            if (statements.length === 0) return;
+            const randomIndex = Math.floor(Math.random() * statements.length);
+            statementEl.innerText = statements[randomIndex];
+        }
+
+        // First statement on load
+        generateRandom();
+
+        // Button
+        btn.addEventListener('click', generateRandom);
+    </script>
+</body>
+</html>

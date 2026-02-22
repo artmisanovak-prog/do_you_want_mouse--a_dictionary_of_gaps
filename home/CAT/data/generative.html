@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔮 Cat – generative mode</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, serif;
+    background: #fff;
+    color: #111;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem;
+    line-height: 1.6;
+  }
+  h1 { font-size: 1.4rem; margin-bottom: 0.3rem; }
+  h2 { font-size: 1.1rem; margin: 2rem 0 0.7rem; border-bottom: 1px solid #111; padding-bottom: 0.3rem; }
+  h3 { font-size: 1rem; margin: 0 0 0.3rem; }
+  .nav { font-size: 0.85rem; margin-bottom: 1.5rem; }
+  .nav a { color: #111; }
+  .intro {
+    border-left: 3px solid #111;
+    padding: 0.7rem 1rem;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    color: #333;
+  }
+  .combination {
+    border: 1px solid #111;
+    margin-bottom: 1.5rem;
+  }
+  .combination-header {
+    background: #111;
+    color: #fff;
+    padding: 0.7rem 1rem;
+    font-size: 0.9rem;
+  }
+  .combination-header span {
+    font-size: 0.8rem;
+    opacity: 0.75;
+    display: block;
+    margin-top: 0.1rem;
+  }
+  .combination-body { padding: 1rem; }
+  .combination-name { font-weight: bold; font-size: 1rem; margin-bottom: 0.3rem; }
+  .combination-goal { font-size: 0.85rem; color: #555; font-style: italic; margin-bottom: 0.8rem; }
+  .combination-exercise { font-size: 0.88rem; }
+  .combination-exercise p { margin-bottom: 0.4rem; }
+  .combination-exercise ol { margin-left: 1.2rem; }
+  .combination-exercise li { margin-bottom: 0.4rem; }
+  .custom-box {
+    border: 1px solid #111;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .custom-box p { font-size: 0.88rem; color: #444; margin-bottom: 1rem; }
+  .selects { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+  .select-group { flex: 1; min-width: 200px; }
+  .select-group label { display: block; font-size: 0.82rem; font-weight: bold; margin-bottom: 0.3rem; }
+  .select-group select {
+    width: 100%;
+    padding: 0.4rem 0.5rem;
+    border: 1px solid #111;
+    font-family: Georgia, serif;
+    font-size: 0.85rem;
+    background: #fff;
+  }
+  .btn {
+    padding: 0.5rem 1.2rem;
+    background: #111;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-family: Georgia, serif;
+  }
+  .btn:hover { background: #333; }
+  .result-combination {
+    display: none;
+    margin-top: 1.2rem;
+    border-top: 1px solid #ccc;
+    padding-top: 1rem;
+  }
+  .result-combination h3 { margin-bottom: 0.8rem; }
+  .angle-panel {
+    border: 1px solid #ddd;
+    padding: 0.8rem;
+    margin-bottom: 0.8rem;
+  }
+  .angle-panel strong { display: block; margin-bottom: 0.3rem; }
+  .angle-panel .meta { font-size: 0.8rem; color: #555; font-style: italic; margin-bottom: 0.5rem; }
+  .angle-panel .q3-text { font-size: 0.88rem; border-left: 2px solid #111; padding-left: 0.7rem; }
+  .hint {
+    background: #f5f5f5;
+    padding: 0.7rem;
+    font-size: 0.82rem;
+    color: #444;
+    margin-top: 0.8rem;
+    font-style: italic;
+  }
+  @media print {
+    .nav, .btn, select { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <a href="../">← Cat</a> &nbsp;|&nbsp;
+  <a href="../../../">Do You Want a Mouse?</a>
+</div>
+
+<h1>🔮 Cat – generative mode</h1>
+<p style="font-size:0.85rem; color:#555; margin-bottom:1rem;">The Cat with itself</p>
+
+<div class="intro">
+  Did you know that this card can generate new workshops without needing another card?<br>
+  Just combine two different angles. Here are 4 ready-made combinations — use them straight away.
+</div>
+
+<h2>🧩 Ready-made combinations</h2>
+
+<div class="combination">
+  <div class="combination-header">
+    Combination 1 + 9
+    <span>Angle 1 (The Physical End of a Sentence) × Angle 9 (The Unfinished as a Gift)</span>
+  </div>
+  <div class="combination-body">
+    <div class="combination-name">Full stop, or three dots?</div>
+    <div class="combination-goal">Goal: Practise the shift from closing to opening.</div>
+    <div class="combination-exercise">
+      <p><strong>Exercise (20 minutes):</strong></p>
+      <ol>
+        <li>Take a current problem that "should have been decided long ago".</li>
+        <li><strong>5 minutes:</strong> Every proposal must end with a full stop. No "maybe", no "what if". Only hard, finished decisions.</li>
+        <li><strong>5 minutes:</strong> Every proposal must end with three dots. No closure, only opening, questions, possibilities.</li>
+        <li><strong>10 minutes:</strong> Reflection – <em>When does a full stop help us? When do three dots help us? Where in our work do we need more of one or the other?</em></li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="combination">
+  <div class="combination-header">
+    Combination 2 + 6
+    <span>Angle 2 (Quasi-efficiency) × Angle 6 (The Tyranny of Metrics)</span>
+  </div>
+  <div class="combination-body">
+    <div class="combination-name">14 full stops we don't see</div>
+    <div class="combination-goal">Goal: Reveal what numbers cannot capture.</div>
+    <div class="combination-exercise">
+      <p><strong>Exercise (25 minutes):</strong></p>
+      <ol>
+        <li>Each team member writes <strong>one metric</strong> the team regularly tracks on a slip of paper.</li>
+        <li>The slips are shuffled and each person draws one from someone else.</li>
+        <li>Task: <em>"Invent the story this metric does NOT tell. What is happening behind the scenes? Who or what is suffering? What successes remain invisible?"</em></li>
+        <li>Share. Output: a list of <strong>"14 full stops"</strong> – things we should start tracking but have not measured yet.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="combination">
+  <div class="combination-header">
+    Combination 4 + 7
+    <span>Angle 4 (The Observing Mouse) × Angle 7 (Forced Consensus)</span>
+  </div>
+  <div class="combination-body">
+    <div class="combination-name">The silent witness speaks</div>
+    <div class="combination-goal">Goal: Give voice to the quiet members and reveal false consensus.</div>
+    <div class="combination-exercise">
+      <p><strong>Exercise (30 minutes):</strong></p>
+      <ol>
+        <li>Appoint one person as the "Mouse" — they only observe, take no active part.</li>
+        <li>Hold a normal discussion on a current topic (15 minutes).</li>
+        <li>The Mouse then shares observations: Who spoke most? Who was interrupted? Were there moments of silence that felt like forced agreement?</li>
+        <li>Reflection: How does it change the meeting when someone is watching without judging?</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="combination">
+  <div class="combination-header">
+    Combination 5 + 10
+    <span>Angle 5 (Lasting Change) × Angle 10 (Communication Trauma)</span>
+  </div>
+  <div class="combination-body">
+    <div class="combination-name">Rebuilding after the cat</div>
+    <div class="combination-goal">Goal: Map the damage and start restoring trust.</div>
+    <div class="combination-exercise">
+      <p><strong>Exercise (35 minutes):</strong></p>
+      <ol>
+        <li>Anonymous written round: "Describe one moment when you felt your voice was swallowed in this team."</li>
+        <li>Read the responses aloud (without attribution). The group listens — no reactions, no justifications.</li>
+        <li>Together identify: what patterns repeat? What do people most fear?</li>
+        <li>Create one concrete rule that would prevent the most frequently mentioned situation.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<h2>🔧 Create your own combination</h2>
+
+<div class="custom-box">
+  <p>Choose two angles — one that your team overuses (overloaded), and one it lacks (deficient). The tool will show you the core task of each and suggest how to combine them into one exercise.</p>
+  <div class="selects">
+    <div class="select-group">
+      <label>Angle A (overloaded / dominant):</label>
+      <select id="angle-a"><option value="">— choose an angle —</option></select>
+    </div>
+    <div class="select-group">
+      <label>Angle B (deficient / missing):</label>
+      <select id="angle-b"><option value="">— choose an angle —</option></select>
+    </div>
+  </div>
+  <button class="btn" onclick="generate()">🔮 Combine angles</button>
+  <div class="result-combination" id="result">
+    <h3>Your combination</h3>
+    <div id="panel-a" class="angle-panel"></div>
+    <div id="panel-b" class="angle-panel"></div>
+    <div class="hint">
+      These are two tasks (Q3) from the selected angles. Combine them into one exercise — give it a name, estimate the time, describe the process. Principle: people with angle A are given the task of working in the manner of angle B.
+    </div>
+  </div>
+</div>
+
+<script>
+// ─────────────────────────────────────────────────────────────
+// DATA EMBEDDED DIRECTLY – no fetch, works offline and on GitHub
+// ─────────────────────────────────────────────────────────────
+const angles = [
+  {
+    "id": 1,
+    "emoji": "🔚",
+    "name": "The Physical End of a Sentence",
+    "metaphor": "The faster we try to close a sentence, the more of its meanings remain unspoken.",
+    "q1": "The cat became a slave to the full stop. It believed that value lay in closure, not in content.",
+    "q2": "In our meetings, when someone says 'so…' or 'maybe we could…' and is immediately interrupted with a solution. Or when management pushes for a quick 'action point' before the problem has been properly explored.",
+    "q3": "Introduce the 'three dots' rule (…). When someone hints at something, they must have space to develop it. The first person to say 'full stop' has one task only: to summarise what they heard — NOT to add their own conclusion."
+  },
+  {
+    "id": 2,
+    "emoji": "⏱️",
+    "name": "Quasi-efficiency",
+    "metaphor": "Quickly ticking off agenda items is like tidying mess into a cupboard — done on the surface, but the problem will return.",
+    "q1": "The cat thought it was speeding up the work. 'Half an hour and done!' But in reality it only replaced a shared process with a monologue.",
+    "q2": "When a project manager or dominant person pushes to quickly 'tick off' agenda items without getting to the root of anything. Meetings are short, but problems keep coming back like unburped full stops.",
+    "q3": "Measure meeting success not by length, but by the number of open questions at the end. If all items are 'closed', we were probably being cats."
+  },
+  {
+    "id": 3,
+    "emoji": "🐞",
+    "name": "The Unswallowable Content",
+    "metaphor": "Heavy topics we try to swallow will eventually come back up at the most inconvenient moment.",
+    "q1": "The ladybirds carry 'unswallowed sentence endings'. These are the uncomfortable, unprocessed, complex aspects of a problem. The cat swallowed them, but its body (the team) rejected them — it burped them back up.",
+    "q2": "When we suppress 'elephants in the room', sensitive topics, emotional frustrations, or fundamental disagreement with an approach. We say 'OK, let's move on', but the topic then poisons the atmosphere.",
+    "q3": "Create an 'unswallowed board'. A physical or virtual space where people can anonymously write 'unswallowed endings' from discussions. Review them regularly and add them to the agenda."
+  },
+  {
+    "id": 4,
+    "emoji": "🐀",
+    "name": "The Observing Mouse",
+    "metaphor": "The quiet voices in the room are like a mouse taking notes — she hears more than anyone who speaks, but nobody hears her.",
+    "q1": "The mouse is a metaphor for a facilitator or quiet member. She cannot stop the cat, but she observes and stores her response. She sees the dysfunction clearly, but has no power to stop it.",
+    "q2": "When the team includes introverts or people who need more time to formulate a thought. Their voices are silenced by the 'cat-style' of communication. Eventually they go quiet and frustration grows.",
+    "q3": "Appoint a 'mouse' for every important discussion. Their only role is to observe who speaks, who is interrupted, and at the end to share observations without judgement."
+  },
+  {
+    "id": 5,
+    "emoji": "🕳️",
+    "name": "Lasting Change",
+    "metaphor": "Trust is like a spider's web — once broken, the hole remains, even when you try to repair it.",
+    "q1": "Even after the cat stopped, 'something was not the same'. A one-time disruption of communication culture leaves a permanent scar. People subconsciously fear opening their mouths again.",
+    "q2": "When after a 'toxic' meeting or period with a dominant leader, the team remains passive even after the behaviour changes — doesn't initiate, waits for instructions. Trust in a safe space is gone.",
+    "q3": "Deliberately create 'unfinished sentences'. The leader must start a thought and invite others to complete it. Restore trust by giving up control of the full stop."
+  },
+  {
+    "id": 6,
+    "emoji": "🔢",
+    "name": "The Tyranny of Metrics",
+    "metaphor": "We count full stops but don't see the ladybirds — numbers without a story are like a map without a landscape.",
+    "q1": "The story is obsessed with precise numbers: 2 ladybirds, 14 full stops, 30 minutes. This is a parody of managerial reporting, where it's about numbers, not the story behind them ('why do the ladybirds have full stops?').",
+    "q2": "When a retrospective or review only addresses 'done/not done', 'number of tasks', but not 'how do we feel', 'what did we learn', 'what stories are behind the numbers'.",
+    "q3": "Add a qualitative story to every quantitative metric. Not 'we completed 14 tasks', but 'which 14 full stops did we burp out and what did that mean for us?'."
+  },
+  {
+    "id": 7,
+    "emoji": "🦾",
+    "name": "Forced Consensus",
+    "metaphor": "Silence in a discussion is not agreement — it is only exhaustion from fighting for a word.",
+    "q1": "The cat forced agreement by finishing sentences. People stopped speaking because their completion would be the same as the cat's. It created the illusion of consensus.",
+    "q2": "When a manager in a brainstorm says 'So we all agree on X, right?' and scans the room. Silence is interpreted as agreement, but in reality it is resignation.",
+    "q3": "Use a 'silence consent' mechanism. If after a decision is presented there is silence, it automatically means DISAGREEMENT. It forces people to actively say 'I agree'."
+  },
+  {
+    "id": 8,
+    "emoji": "🏁",
+    "name": "Competition Instead of Collaboration",
+    "metaphor": "Whoever finishes the sentence first wins — but the whole team loses.",
+    "q1": "The cat competed: 'who finishes the sentence first'. Communication became a race for dominance, not collaboration to find the best idea.",
+    "q2": "In teams where people are rewarded for individual performance, this pattern appears. Interrupting is a display of competition: 'I know better, listen to me'.",
+    "q3": "Introduce a 'speaker's round' for key discussions. Use a physical object (talking stick). Only the person holding it speaks. Everyone else only listens actively."
+  },
+  {
+    "id": 9,
+    "emoji": "🎁",
+    "name": "The Unfinished as a Gift",
+    "metaphor": "An unfinished sentence is like an open window — anything new can fly in.",
+    "q1": "The story says: 'Unfinished sentences tend to all be the same.' That is the key! Once a sentence is finished, it is fixed, dead. Unfinished, it is alive, full of potential.",
+    "q2": "When the team immediately looks for a solution ('let's do A') instead of staying longer in the definition of the problem ('what if it's actually B?'). We fixate on the first 'completed' thought.",
+    "q3": "Exercise: 'deliberately leave unfinished'. In brainstorming, set the task: 'Our problem is like…' and forbid completing the comparison. Only generate beginnings. Explore which unfinished metaphor is the most powerful."
+  },
+  {
+    "id": 10,
+    "emoji": "💔",
+    "name": "Communication Trauma",
+    "metaphor": "Scorched earth doesn't grow — after a toxic meeting people are afraid to speak even about the weather.",
+    "q1": "The cat 'talked over people' and 'swallowed ladybirds' — these are words of violence. Communication became a traumatic experience. The team psychologically 'collapsed'.",
+    "q2": "When meetings are a source of stress, where people are afraid to speak because they will be interrupted, embarrassed, or their idea will be 'swallowed' without respect.",
+    "q3": "Conduct a 'communication safety audit'. Anonymous questionnaire: Do I feel safe expressing disagreement? Am I often interrupted? Are my ideas taken seriously? Use the results to set ground rules."
+  },
+  {
+    "id": 11,
+    "emoji": "⚫",
+    "name": "The Strong Full Stop",
+    "metaphor": "A full stop at the end of a discussion is sometimes a blow that cuts off all further thoughts.",
+    "q1": "A full stop is sometimes stronger than the entire sentence. Formal closure (a full stop, a decision, an approval) has more power than a long discussion. It can be used as a weapon.",
+    "q2": "When long discussions drift and then someone authoritatively says 'So, decided!' and puts a full stop. The team accepts the full stop from exhaustion, not conviction.",
+    "q3": "When closing a decision, don't ask 'Is that clear?', but 'Who feels that their voice or concerns were not sufficiently heard before this full stop?'."
+  },
+  {
+    "id": 12,
+    "emoji": "🍀",
+    "name": "Returned Luck",
+    "metaphor": "Healed trust is like a ladybird that returns to the place where it was almost swallowed — fragile, but all the more precious for it.",
+    "q1": "The story ends with hope: 'The luck of two ladybirds came back.' Even after trauma, repair is possible. But it requires quiet understanding — not grand apologies, but a change in behaviour.",
+    "q2": "When a team goes through a dysfunctional period, but then the dynamic shifts without many words. People cautiously begin to trust again. This is a fragile process.",
+    "q3": "Set up a 'ladybird ritual'. Whenever someone feels they have been 'swallowed' (interrupted, silenced), they can signal with a quiet symbol (e.g. placing a ladybird on the table) to indicate the need to slow down and listen."
+  }
+];
+
+// Populate selects on page load
+document.addEventListener('DOMContentLoaded', () => {
+  const options = angles.map(a => `<option value="${a.id}">${a.id}. ${a.emoji} ${a.name}</option>`).join('');
+  document.getElementById('angle-a').innerHTML = '<option value="">— choose an angle —</option>' + options;
+  document.getElementById('angle-b').innerHTML = '<option value="">— choose an angle —</option>' + options;
+});
+
+function generate() {
+  const idA = parseInt(document.getElementById('angle-a').value);
+  const idB = parseInt(document.getElementById('angle-b').value);
+  if (!idA || !idB) { alert('Please choose both angles.'); return; }
+  if (idA === idB) { alert('Please choose two different angles.'); return; }
+  const a = angles.find(u => u.id === idA);
+  const b = angles.find(u => u.id === idB);
+  document.getElementById('panel-a').innerHTML = `
+    <strong>${a.id}. ${a.emoji} ${a.name}</strong>
+    <div class="meta">${a.metaphor}</div>
+    <div class="q3-text">${a.q3}</div>
+  `;
+  document.getElementById('panel-b').innerHTML = `
+    <strong>${b.id}. ${b.emoji} ${b.name}</strong>
+    <div class="meta">${b.metaphor}</div>
+    <div class="q3-text">${b.q3}</div>
+  `;
+  const el = document.getElementById('result');
+  el.style.display = 'block';
+  el.scrollIntoView({ behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>

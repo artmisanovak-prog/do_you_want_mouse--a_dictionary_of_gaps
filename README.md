@@ -132,14 +132,14 @@ Why?
 | Card | Problem | Preview | Price |
 |------|---------|---------|-------|
 | <img src="home/CAT/data/cat.jpg" width="80"><br>**Cat** | We talk over each other — ideas die before they get a chance | [Preview](./home/CAT/) | free |
-| <img src="card_previews/Flamingo/flamingo.jpg" width="80"><br>**Flamingo** | Enthusiasm without a plan — energy that leads nowhere | [Preview](./card_previews/Flamingo/) | $1,600 |
-| <img src="card_previews/Peacock/peacock.jpg" width="80"><br>**Peacock** | We see the project through ourselves — and stop seeing reality | [Preview](./card_previews/Peacock/) | $1,600 |
-| <img src="card_previews/Fly/fly.jpg" width="80"><br>**Fly** | Chaos has become the norm — and nobody notices anymore | [Preview](./card_previews/Fly/) | $1,600 |
-| <img src="card_previews/Fish/fish.jpg" width="80"><br>**Fish** | We talk a lot, but nothing changes | [Preview](./card_previews/Fish/) | $1,600 |
+| <img src="home/card_previews/Flamingo/flamingo.jpg" width="80"><br>**Flamingo** | Enthusiasm without a plan — energy that leads nowhere | [Preview](./home/card_previews/Flamingo/) | $1,600 |
+| <img src="home/card_previews/Peacock/peacock.jpg" width="80"><br>**Peacock** | We see the project through ourselves — and stop seeing reality | [Preview](./home/card_previews/Peacock/) | $1,600 |
+| <img src="home/card_previews/Fly/fly.jpg" width="80"><br>**Fly** | Chaos has become the norm — and nobody notices anymore | [Preview](./home/card_previews/Fly/) | $1,600 |
+| <img src="home/card_previews/Fish/fish.jpg" width="80"><br>**Fish** | We talk a lot, but nothing changes | [Preview](./home/card_previews/Fish/) | $1,600 |
 | <img src="home/card_previews/Geese/goose.jpg" width="80"><br>**Geese** | Everyone shouts "we" — but everyone only thinks of themselves | [Preview](./home/card_previews/Geese/) | $1,600 |
-| <img src="card_previews/Antlers/antlers.jpg" width="80"><br>**Antlers** | We define ourselves by what we used to do — not by who we are | [Preview](./card_previews/Antlers/) | $1,600 |
-| <img src="card_previews/Sparrow/sparrow.jpg" width="80"><br>**Sparrow** | The temporary solution that will be here forever | [Preview](./card_previews/Sparrow/) | $1,600 |
-| <img src="card_previews/Donkey/donkey.jpg" width="80"><br>**Donkey** | So many options — that we end up choosing none | [Preview](./card_previews/Donkey/) | $1,600 |
+| <img src="home/card_previews/Antlers/antlers.jpg" width="80"><br>**Antlers** | We define ourselves by what we used to do — not by who we are | [Preview](./home/card_previews/Antlers/) | $1,600 |
+| <img src="home/card_previews/Sparrow/sparrow.jpg" width="80"><br>**Sparrow** | The temporary solution that will be here forever | [Preview](./home/card_previews/Sparrow/) | $1,600 |
+| <img src="home/card_previews/Donkey/donkey.jpg" width="80"><br>**Donkey** | So many options — that we end up choosing none | [Preview](./home/card_previews/Donkey/) | $1,600 |
 
 ---
 
@@ -270,13 +270,13 @@ that there is never just one.
 
 | Card | Dysfunction | |
 |------|-------------|---|
-| <img src="card_previews/starfish.jpg" width="60"><br>**Starfish** | We treat symptoms, not causes | [I'm interested](mailto:chcesmys@gmail.com?subject=Interest%20in%20card%3A%20Starfish) |
-| <img src="card_previews/ram.jpg" width="60"><br>**Ram** | We do what others do — even when it makes no sense | [I'm interested](mailto:chcesmys@gmail.com?subject=Interest%20in%20card%3A%20Ram) |
-| <img src="card_previews/dragon.jpg" width="60"><br>**Dragon** | We follow the rule, but forgot why | [I'm interested](mailto:chcesmys@gmail.com?subject=Interest%20in%20card%3A%20Dragon) |
-| <img src="card_previews/cheetah.jpg" width="60"><br>**Cheetah** | Running at full speed — but after the goal comes emptiness, burnout | [I'm interested](mailto:chcesmys@gmail.com?subject=Interest%20in%20card%3A%20Cheetah) |
-| <img src="card_previews/butterfly.jpg" width="60"><br>**Butterfly** | The problem looks fine, so nobody addresses it | [I'm interested](mailto:chcesmys@gmail.com?subject=Interest%20in%20card%3A%20Butterfly) |
-| <img src="card_previews/tiger.jpg" width="60"><br>**Tiger** | The system wants one thing, the person is another — and nobody says it out loud | [I'm interested](mailto:chcesmys@gmail.com?subject=Interest%20in%20card%3A%20Tiger) |
-| <img src="card_previews/turtle.jpg" width="60"><br>**Turtle** | Two approaches contradict each other, but neither works without the other | [I'm interested](mailto:chcesmys@gmail.com?subject=Interest%20in%20card%3A%20Turtle) |
+| <img src="home/card_previews/starfish.jpg" width="60"><br>**Starfish** | We treat symptoms, not causes | [I'm interested](mailto:chcesmys@gmail.com?subject=Interest%20in%20card%3A%20Starfish) |
+| <img src="home/card_previews/ram.jpg" width="60"><br>**Ram** | We do what others do — even when it makes no sense | [I'm interested](mailto:chcesmys@gmail.com?subject=Interest%20in%20card%3A%20Ram) |
+| <img src="home/card_previews/dragon.jpg" width="60"><br>**Dragon** | We follow the rule, but forgot why | [I'm interested](mailto:chcesmys@gmail.com?subject=Interest%20in%20card%3A%20Dragon) |
+| <img src="home/card_previews/cheetah.jpg" width="60"><br>**Cheetah** | Running at full speed — but after the goal comes emptiness, burnout | [I'm interested](mailto:chcesmys@gmail.com?subject=Interest%20in%20card%3A%20Cheetah) |
+| <img src="home/card_previews/butterfly.jpg" width="60"><br>**Butterfly** | The problem looks fine, so nobody addresses it | [I'm interested](mailto:chcesmys@gmail.com?subject=Interest%20in%20card%3A%20Butterfly) |
+| <img src="home/card_previews/tiger.jpg" width="60"><br>**Tiger** | The system wants one thing, the person is another — and nobody says it out loud | [I'm interested](mailto:chcesmys@gmail.com?subject=Interest%20in%20card%3A%20Tiger) |
+| <img src="home/card_previews/turtle.jpg" width="60"><br>**Turtle** | Two approaches contradict each other, but neither works without the other | [I'm interested](mailto:chcesmys@gmail.com?subject=Interest%20in%20card%3A%20Turtle) |
 
 ---
 
@@ -287,4 +287,4 @@ Full card versions are available under a commercial licence.
 
 ---
 
-📧 chcesmys@gmail.com
+📧mailto:chcesmys@gmail.com

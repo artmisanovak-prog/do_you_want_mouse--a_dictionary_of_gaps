@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse - 12 perspectives</title>
+    <style>
+        /* --- BLACK AND WHITE WORLD - NO COLOURS --- */
+        html {
+            filter: grayscale(1);
+        }
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: #fff;
+            color: #000;
+            line-height: 1.7;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 0.3em;
+        }
+        /* --- FAIRY TALE - SCROLLABLE WINDOW --- */
+        .story-container {
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #000;
+            padding: 0 1.5em;
+            margin: 2em 0;
+            background: #f9f9f9;
+            font-style: italic;
+        }
+        .story p {
+            padding: 0.5em 0;
+        }
+        /* --- 12 BUTTONS - SIMPLE GRID --- */
+        .angle-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6em;
+            margin: 2em 0;
+            justify-content: center;
+        }
+        .angle-list button {
+            background: #fff;
+            border: 1px solid #000;
+            padding: 0.7em 1.2em;
+            font-size: 0.95rem;
+            font-family: inherit;
+            cursor: pointer;
+            transition: 0.1s;
+            color: #000;
+        }
+        .angle-list button:hover {
+            background: #ddd;
+        }
+        .angle-list button.selected {
+            background: #000;
+            color: #fff;
+            border: 2px solid #000;
+            font-weight: bold;
+        }
+        /* --- OUTPUT - BELOW THE BUTTONS --- */
+        .output {
+            border: 1px solid #000;
+            padding: 2em;
+            margin-top: 2em;
+            background: #fff;
+            min-height: 180px;
+        }
+        .angle-name {
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin-bottom: 0.5em;
+        }
+        .angle-desc {
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 1.5em;
+        }
+        .angle-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        .footer {
+            margin-top: 3em;
+            text-align: center;
+            font-size: 0.9rem;
+            border-top: 1px solid #ccc;
+            padding-top: 1.5em;
+        }
+        .footer a {
+            color: #000;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<h1>🐁 12 perspectives</h1>
+<p><em>"About a mouse
+  and what happens
+  when you don't notice her (scroll)"</em></p>
+
+<!-- FAIRY TALE -->
+<h2>A CROOKED FAIRY TALE – A STRAIGHT TESTIMONY</h2>
+<div class="story-container" id="story">
+    <div class="story">
+        <p><em>Written by a hand that didn't want to explain anything.</em></p>
+        
+        <p>These fairy tales don't tell stories the way they should.<br>
+        Instead of magic, there is misunderstanding.<br>
+        Instead of good and evil — a strange calm between them.<br>
+        The animals speak here, but not to entertain us.<br>
+        They say what people cannot say out loud.<br>
+        Stories that happened more than they were invented —<br>
+        and perhaps are still happening.<br>
+        They just can't be seen from the usual angle.</p>
+        
+        <p><strong>A CROOKED FAIRY TALE   ⬇️</strong></p>
+        
+        <p>Such a small, strange, crooked<br>
+        fairy tale about a mouse,<br>
+        that may not even be a fairy tale,<br>
+        but something<br>
+        that happened.</p>
+        
+        <p>And in that world there are other animals too<br>
+        — a stork, a peacock, a cat, a goat…<br>
+        but all of it is<br>
+        half a dream,<br>
+        half a joke,<br>
+        half an interpretation<br>
+        and half completely off</p>
+        
+        <p><strong>ABOUT THE MOUSE<br>
+        and what happens when you DON'T notice her</strong></p>
+        
+        <p>Once upon a time — yet not so very long ago.<br>
+        And not exactly nearby, but not that far away either.</p>
+        
+        <p>There lived a mouse.<br>
+        She was small, the way mice<br>
+        usually are.<br>
+        And she had two very large ears,<br>
+        which is also nothing unusual for a mouse.</p>
+        
+        <p>She wasn't particularly fast,<br>
+        but not completely slow either.<br>
+        She wasn't stupid,<br>
+        but not exceptionally clever.</p>
+        
+        <p>At first glance,<br>
+        an ordinary, everyday mouse.</p>
+        
+        <p>But not — normal.<br>
+        She noticed things that others overlooked.</p>
+        
+        <p>For instance, that a sentence sometimes catches in the air.<br>
+        Or that the peacock,<br>
+        when nobody is looking,<br>
+        counts his eyes.<br>
+        Or that the stork<br>
+        sometimes just<br>
+        lands on a chimney<br>
+        and forgets<br>
+        whom he was supposed to bring.</p>
+        
+        <p>And this mouse<br>
+        began to write things down.<br>
+        Not on paper.<br>
+        But somehow.<br>
+        Into silence.<br>
+        Into corners.<br>
+        Into the cracks between words,<br>
+        where nobody usually reads.</p>
+        
+        <p>And then one day she noticed<br>
+        that animals were beginning to gather<br>
+        around her.</p>
+        
+        <p>Not in a line.<br>
+        Not in a circle.<br>
+        Just…<br>
+        somehow.</p>
+        
+        <p>And each one was carrying something<br>
+        it didn't explain.</p>
+        
+        <p>The hare had burnt ears<br>
+        and smelled of smoke.<br>
+        The cat was choking with laughter,<br>
+        because it had swallowed a full stop.<br>
+        The elephant was carrying cherries in its trunk,<br>
+        that would never ripen.<br>
+        And the lemur wasn't looking at anything,<br>
+        only to the side,<br>
+        where there was nothing.</p>
+        
+        <p>The mouse said nothing.<br>
+        But she noted everything down.<br>
+        And then one day<br>
+        she asked the first question.</p>
+        
+        <p>Not a big one.<br>
+        Not an important one.<br>
+        Just that one:</p>
+        
+        <p>"Do you want a mouse?"</p>
+        
+        <p>And that was not a question<br>
+        asking<br>
+        about herself.<br>
+        It was a question<br>
+        asking<br>
+        about everything.</p>
+        
+        <p>About meaning.<br>
+        About language.<br>
+        About fear.<br>
+        About<br>
+        what anyone will make of us.</p>
+        
+        <p>And also about<br>
+        whether you will let this fairy tale<br>
+        be told to you<br>
+        to the end.<br>
+        Or squeak and run.<br>
+        Or fold it differently.</p>
+        
+        <p>Because from that moment,<br>
+        it was no longer just a mouse.</p>
+        
+        <p>It was a key.<br>
+        And a paddle.<br>
+        And a trap.<br>
+        And the end of the introduction.<br>
+        But the beginning of something else.</p>
+        
+        <p>..perhaps..</p>
+        
+    </div>
+</div>
+    
+<!-- 12 ANGLES -->
+<h2>Choose a perspective</h2>
+<div class="angle-list" id="buttons"></div>
+
+<!-- OUTPUT -->
+<div class="output" id="output">
+    <div class="angle-name" id="angleName"></div>
+    <div class="angle-desc" id="angleDesc"></div>
+    <div id="angleText"></div>
+</div>
+
+<div class="footer">
+    Author: Art Misa Novak — Repo Home method<br>
+    <a href="mailto:chcesmys@gmail.com">for more info write to us</a>
+</div>
+
+<script>
+    // --- 12 ANGLES WITH SHORT DESCRIPTION AND SPECIFIC SENTENCE ABOUT THE STORY ---
+    const data = [
+        { 
+            name: "Absurd", 
+            desc: "Looks for nonsense, paradox, contradiction.", 
+            text: "A mouse that writes into silence? What kind of nonsense is that? And why would animals gather around her? The whole fairy tale is one big paradox — and that's precisely why it's true." 
+        },
+        { 
+            name: "Linguistic", 
+            desc: "Follows words, rhythm, ambiguity.", 
+            text: "'Do you want a mouse?' is not a question. It's a trap. Language can get stuck — and this is exactly that moment. The fairy tale shows how language can seize up — and how to unstick it." 
+        },
+        { 
+            name: "Ironic", 
+            desc: "Sees the gap between intention and result.", 
+            text: "The mouse didn't want anything, just to take notes in a corner. And suddenly she is the centre of the forest. Everyone is waiting to see what she will do. Irony? More of a tragicomedy." 
+        },
+        { 
+            name: "Philosophical", 
+            desc: "Asks about meaning and essence.", 
+            text: "What does it mean to 'be a mouse'? Is it a role, or an essence? And what does it mean to 'want a mouse'? A longing for meaning? For an answer? The fairy tale is one big question with no answer — only more questions." 
+        },
+        { 
+            name: "Surrealist", 
+            desc: "Connects the unrelated.", 
+            text: "A peacock with eyes on its tail, an elephant with cherries in its trunk, a mouse writing into silence. This is not a forest, it's a painting — and every animal is a brush with which the mouse paints the world." 
+        },
+        { 
+            name: "Naive", 
+            desc: "Sees things simply, without prejudice.", 
+            text: "The mouse notices things others don't see. And then she asks them one question. That's it. You don't need to understand it any more than the mouse does." 
+        },
+        { 
+            name: "Introspective", 
+            desc: "Projects their own feelings into the story.", 
+            text: "I feel silence in it. A mouse, alone in the middle of a forest, surrounded by animals I don't understand. I've always been the one who wrote things down in corners, because outside nobody was waiting for them." 
+        },
+        { 
+            name: "Concrete", 
+            desc: "Reads literally, factually.", 
+            text: "The fairy tale is about a mouse who lived in a forest, met a peacock, a cat, an elephant and a lemur, noticed their peculiarities, wrote them down, and then asked them 'Do you want a mouse?'." 
+        },
+        { 
+            name: "Cultural", 
+            desc: "Looks for archetypes and parallels.", 
+            text: "The mouse is like Ariadne — she gives a thread so you don't get lost. Except her thread isn't made of wool, but of silence. And it doesn't lead out of the labyrinth — it leads into it. It's an ancient myth, just with a lemur instead of Theseus." 
+        },
+        { 
+            name: "Associative", 
+            desc: "Evokes personal memories.", 
+            text: "It reminded me of our project manager. She also wrote everything down and nobody knew why. And then one day she asked a question and the whole team went quiet. Exactly like the mouse." 
+        },
+        { 
+            name: "Metaphorical", 
+            desc: "Sees symbols behind things.", 
+            text: "The mouse is not a mouse. It is attention. The peacock is vanity, the cat is haste, the elephant is memory, the lemur is loss. And the question 'Do you want a mouse?' is not a question. It is a choice — whether you want to see." 
+        },
+        { 
+            name: "Grotesque", 
+            desc: "Sees exaggerated, dark comedy.", 
+            text: "Imagine: a peacock counting its eyes, a lemur staring into emptiness, an elephant with cherries in its trunk — and the mouse saves them all with a question none of them can answer. It's a farce. And it's beautiful." 
+        }
+    ];
+
+    const buttonsDiv = document.getElementById('buttons');
+    const nameEl = document.getElementById('angleName');
+    const descEl = document.getElementById('angleDesc');
+    const textEl = document.getElementById('angleText');
+
+    // Create buttons
+    data.forEach((angle, index) => {
+        const btn = document.createElement('button');
+        btn.textContent = angle.name;
+        btn.addEventListener('click', () => {
+            // Highlight
+            document.querySelectorAll('.angle-list button').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            
+            // Display
+            nameEl.textContent = angle.name;
+            descEl.textContent = angle.desc;
+            textEl.innerHTML = `<p>${angle.text}</p>`;
+        });
+        buttonsDiv.appendChild(btn);
+    });
+</script>
+</body>
+</html>

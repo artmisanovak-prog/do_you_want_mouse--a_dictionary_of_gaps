@@ -1,4 +1,4 @@
-# 🐈‍⬛ TomCat - DYSFUNCTION: **The tyranny of premature closure in communication**
+# 🐈‍⬛ Tomcat - DYSFUNCTION: **The tyranny of premature closure in communication**
 
 ---
 
@@ -8,8 +8,8 @@ This card diagnoses and resolves the problem of teams where people talk over eac
 
 ---
 
-[The Cat fairy tale](./data/fairy_tale.md) |
-[Diagnostic mode](./data/cat-diagnostics.html) | [Creative mode](./data/generator.html) | [Generative mode](./data/generative.html) | [Workshop](./data/WORKSHOP_90_MIN.md) |
+[The tomcat fairy tale](./data/fairy_tale.md) |
+[Diagnostic mode](./data/cat-diagnostics.html) | [Creative mode](./data/generator.html) | [Generative mode](./data/generative.html) | [Workshop](./data/workshop_90_min.html) |
 [Feedback](./data/feedback.html) |
 [Licence](./data/licence_card_cat.txt) |
 
@@ -28,7 +28,7 @@ This card diagnoses and resolves the problem of teams where people talk over eac
 
 ## Fairy tale
 
-Read the fairy tale **[How the Cat Swallowed Two Ladybirds and Spent Half an Hour Burping Full Stops](data/fairy_tale.md)**.
+Read the fairy tale **[How the Tomcat Swallowed Two Ladybirds and Spent Half an Hour Burping Full Stops](data/fairy_tale.md)**.
 
 ---
 

@@ -178,7 +178,7 @@ Why?
 
 > **Can cards be combined?**
 > Yes. Each card addresses one dysfunction, but dysfunctions layer on top of each other in teams.
-> How to combine cards is described in a [separate guide](home/MOUSE/how_to_combine.md) and [inside the card](home/MOUSE/inside_the_cat.md) or [between cards](home/MOUSE/flamingo_and_cat.md)
+> How to combine cards is described in a [separate guide](home/MOUSE/how_to_combine.md) and [inside the card](home/MOUSE/inside_cat.md) or [between cards](home/MOUSE/flamingo_and_cat.md)
 
 ---
 

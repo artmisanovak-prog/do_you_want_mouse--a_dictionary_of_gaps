@@ -40,7 +40,7 @@ A: Diagnostic with the Mouse: 15–30 minutes. Workshop from a card: 90 minutes.
 
 **Q: Can I combine cards?**  
 A: Yes, that is one of the main advantages of the system. See the [combination example](../MOUSE/how_to_combine.md)  
-or: [inside the card](../MOUSE/inside_the_cat.md)
+or: [inside the card](../MOUSE/inside_cat.md)
 
 **Q: Is it suitable for small teams?**  
 A: Yes, for teams from 3 people. It can also be used for individuals or large organisations.

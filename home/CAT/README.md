@@ -15,6 +15,10 @@ This card diagnoses and resolves the problem of teams where people talk over eac
 
 ---
 
+# [← Back to the main page](README.md)
+
+---
+
 ## SYSTEM RULES
 
 1. **No correct** answers – only mapping
@@ -99,3 +103,7 @@ Read the fairy tale **[How the Tomcat Swallowed Two Ladybirds and Spent Half an 
 ---
 
 Contact: **[chcesmys@gmail.com](mailto:chcesmys@gmail.com)**
+
+---
+
+# [← Back to the main page](README.md)

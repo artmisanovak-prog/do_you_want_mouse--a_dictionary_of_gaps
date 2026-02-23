@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🐈‍⬛ Workshop: Half an Hour of Silence – 90 minutes</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: Georgia, serif;
+    background: #fff;
+    color: #111;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 4rem;
+    line-height: 1.65;
+  }
+
+  .nav { font-size: 0.85rem; margin-bottom: 1.5rem; }
+  .nav a { color: #111; }
+
+  h1 { font-size: 1.4rem; margin-bottom: 0.2rem; }
+  .subtitle { font-size: 0.85rem; color: #555; margin-bottom: 2rem; }
+
+  /* PROGRESS BAR — fills as steps are completed */
+  .progress-bar {
+    height: 4px;
+    background: #eee;
+    margin-bottom: 2rem;
+    position: relative;
+  }
+  .progress-fill {
+    height: 100%;
+    background: #111;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+  .progress-label {
+    font-size: 0.78rem;
+    color: #888;
+    text-align: right;
+    margin-top: 0.3rem;
+  }
+
+  /* SECTION HEADER — separates the three parts of the workshop */
+  .section-header {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #888;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.4rem;
+    margin: 2.5rem 0 1.2rem;
+  }
+
+  /* STEP — each collapsible step block */
+  .step {
+    border: 1px solid #ddd;
+    margin-bottom: 1rem;
+    transition: border-color 0.2s;
+  }
+  .step.active { border-color: #111; }  /* currently open step */
+  .step.done { border-color: #bbb; background: #fafafa; }  /* completed step */
+
+  .step-header {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem 1rem;
+    cursor: pointer;
+    user-select: none;
+  }
+  /* Circular checkbox — fills black when step is done */
+  .step-check {
+    width: 22px; height: 22px;
+    border: 1.5px solid #111;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem;
+    transition: background 0.2s;
+  }
+  .step.done .step-check {
+    background: #111;
+    color: #fff;
+    border-color: #111;
+  }
+  .step-title {
+    flex: 1;
+    font-size: 0.95rem;
+    font-weight: bold;
+  }
+  .step.done .step-title { color: #999; text-decoration: line-through; }
+  .step-time {
+    font-size: 0.78rem;
+    color: #888;
+    white-space: nowrap;
+  }
+
+  /* Step body — hidden by default, shown when step is active */
+  .step-body {
+    padding: 0 1rem 1rem;
+    font-size: 0.9rem;
+    display: none;
+  }
+  .step.active .step-body { display: block; }
+
+  .step-body ul, .step-body ol { margin-left: 1.3rem; margin-top: 0.5rem; }
+  .step-body li { margin-bottom: 0.4rem; }
+  .step-body p { margin-top: 0.5rem; }
+  .step-body strong { font-weight: bold; }
+
+  /* Highlighted rule or tip box */
+  .rule-box {
+    border-left: 3px solid #111;
+    padding: 0.6rem 0.9rem;
+    margin: 0.8rem 0;
+    font-size: 0.88rem;
+    background: #f9f9f9;
+  }
+
+  /* TIMER — displayed at the bottom of each step */
+  .timer-block {
+    margin-top: 1rem;
+    border-top: 1px solid #eee;
+    padding-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .timer-display {
+    font-size: 2.2rem;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05em;
+    min-width: 90px;
+  }
+  .timer-display.running { color: #111; }
+  .timer-display.finished { color: #c00; }  /* red when time is up */
+
+  .timer-btns { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .btn {
+    padding: 0.45rem 1rem;
+    border: 1px solid #111;
+    background: #fff;
+    color: #111;
+    font-family: Georgia, serif;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .btn:hover { background: #f0f0f0; }
+  .btn.primary { background: #111; color: #fff; }  /* Start button */
+  .btn.primary:hover { background: #333; }
+  .btn.done-btn { background: #111; color: #fff; }  /* Done button */
+
+  /* MATERIALS BOX — shown at the top before the steps */
+  .materials {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 1rem 1.2rem;
+    margin-bottom: 2rem;
+    font-size: 0.88rem;
+  }
+  .materials h3 { font-size: 0.9rem; margin-bottom: 0.5rem; }
+  .materials ul { margin-left: 1.2rem; }
+  .materials li { margin-bottom: 0.2rem; }
+
+  /* MANIFEST BOX — editable fields inside step 7 */
+  .manifest-box {
+    border: 1px solid #111;
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+  .manifest-box h4 { font-size: 0.9rem; margin-bottom: 0.6rem; }
+  .manifest-line {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.88rem;
+  }
+  .manifest-line span { min-width: 1.2rem; color: #888; }
+  /* Editable rule field — underline style, no visible border box */
+  .manifest-input {
+    flex: 1;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    font-family: Georgia, serif;
+    font-size: 0.88rem;
+    padding: 0.2rem 0;
+    background: transparent;
+    outline: none;
+  }
+  .manifest-input:focus { border-bottom-color: #111; }
+
+  /* Print link — triggers browser print dialog */
+  .print-btn {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: #888;
+    cursor: pointer;
+    text-decoration: underline;
+    background: none;
+    border: none;
+    font-family: Georgia, serif;
+  }
+
+  /* FINISH BOX — shown after all 9 steps are completed */
+  .finish-box {
+    margin-top: 2.5rem;
+    border: 2px solid #111;
+    padding: 1.5rem;
+    text-align: center;
+  }
+  .finish-box h2 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+  .finish-box p { font-size: 0.88rem; color: #555; }
+
+  /* PRINT MODE — hides interactive elements, shows all step bodies */
+  @media print {
+    .nav, .btn, .timer-btns, .timer-block, .print-btn { display: none !important; }
+    .step-body { display: block !important; }
+    .step { border: 1px solid #ccc; page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <a href="../">← Cat</a> &nbsp;|&nbsp;
+  <a href="../../../">Do You Want a Mouse?</a>
+</div>
+
+<h1>🐈‍⬛ Workshop: "Half an Hour of Silence"</h1>
+<p class="subtitle">90 minutes · Facilitator's guide · CAT card</p>
+
+<!-- Progress bar — updated by JavaScript as steps are marked done -->
+<div class="progress-bar">
+  <div class="progress-fill" id="progressFill"></div>
+</div>
+<p class="progress-label" id="progressLabel">0 / 9 steps</p>
+
+<div class="materials">
+  <h3>📋 Prepare before the workshop</h3>
+  <ul>
+    <li>Stopwatch / timer (or use this tool)</li>
+    <li>Flip chart or whiteboard + markers</li>
+    <li>Paper for each participant</li>
+    <li>Optional: a physical ladybird as a talking stick</li>
+  </ul>
+</div>
+
+<!-- PART 1 -->
+<div class="section-header">Part 1 — Diagnosis · 25 minutes</div>
+
+<div class="step" id="step-1">
+  <div class="step-header" onclick="toggleStep(1)">
+    <div class="step-check" id="check-1"></div>
+    <div class="step-title">Step 1: Reading the fairy tale</div>
+    <div class="step-time">5 min</div>
+  </div>
+  <div class="step-body">
+    <p>The facilitator reads the whole fairy tale <strong>out loud</strong>. Participants only listen — no notes, no phones.</p>
+    <div class="rule-box">💡 Read slowly. Pauses are intentional. Don't rush to the next step.</div>
+    <div class="timer-block">
+      <div class="timer-display" id="timer-1">5:00</div>
+      <div class="timer-btns">
+        <button class="btn primary" onclick="startTimer(1, 5)">▶ Start</button>
+        <button class="btn" onclick="resetTimer(1, 5)">↺ Reset</button>
+      </div>
+      <button class="btn done-btn" onclick="markDone(1)">✓ Done</button>
+    </div>
+  </div>
+</div>
+
+<div class="step" id="step-2">
+  <div class="step-header" onclick="toggleStep(2)">
+    <div class="step-check" id="check-2"></div>
+    <div class="step-title">Step 2: Individual reflection</div>
+    <div class="step-time">10 min</div>
+  </div>
+  <div class="step-body">
+    <p>Each participant writes <strong>independently</strong> in response to two questions:</p>
+    <ol>
+      <li>One situation when <strong>someone talked over me</strong> or my thought was never completed.</li>
+      <li>One situation when <strong>I talked over someone</strong> or finished their sentence for them.</li>
+    </ol>
+    <div class="rule-box">💡 Remind participants: they are writing for themselves — they will not read it aloud to the whole group (only in small groups).</div>
+    <div class="timer-block">
+      <div class="timer-display" id="timer-2">10:00</div>
+      <div class="timer-btns">
+        <button class="btn primary" onclick="startTimer(2, 10)">▶ Start</button>
+        <button class="btn" onclick="resetTimer(2, 10)">↺ Reset</button>
+      </div>
+      <button class="btn done-btn" onclick="markDone(2)">✓ Done</button>
+    </div>
+  </div>
+</div>
+
+<div class="step" id="step-3">
+  <div class="step-header" onclick="toggleStep(3)">
+    <div class="step-check" id="check-3"></div>
+    <div class="step-title">Step 3: Sharing in small groups</div>
+    <div class="step-time">10 min</div>
+  </div>
+  <div class="step-body">
+    <p>Split into groups of <strong>3–4 people</strong>. Share situations according to the rule:</p>
+    <div class="rule-box">
+      <strong>Rule for this round:</strong><br>
+      Description only: "It happened… I felt…"<br>
+      <strong>No judgement. No "but". No advice.</strong>
+    </div>
+    <p>The facilitator moves between groups and checks that people are sharing, not discussing.</p>
+    <div class="timer-block">
+      <div class="timer-display" id="timer-3">10:00</div>
+      <div class="timer-btns">
+        <button class="btn primary" onclick="startTimer(3, 10)">▶ Start</button>
+        <button class="btn" onclick="resetTimer(3, 10)">↺ Reset</button>
+      </div>
+      <button class="btn done-btn" onclick="markDone(3)">✓ Done</button>
+    </div>
+  </div>
+</div>
+
+<!-- PART 2 -->
+<div class="section-header">Part 2 — Experiment and new rules · 45 minutes</div>
+
+<div class="step" id="step-4">
+  <div class="step-header" onclick="toggleStep(4)">
+    <div class="step-check" id="check-4"></div>
+    <div class="step-title">Step 4a: Experiment – phase A</div>
+    <div class="step-time">15 min</div>
+  </div>
+  <div class="step-body">
+    <p>The facilitator presents <strong>one specific current problem</strong> the team is facing (prepare this in advance).</p>
+    <div class="rule-box">
+      <strong>Rule for phase A:</strong><br>
+      Nobody may finish another person's sentence.<br>
+      You may ask questions, paraphrase — but <strong>not complete</strong> "and therefore…", "so what you mean is…"<br>
+      The facilitator enforces this strictly and names interruptions: "That was a full stop on Sarah's sentence."
+    </div>
+    <div class="timer-block">
+      <div class="timer-display" id="timer-4">15:00</div>
+      <div class="timer-btns">
+        <button class="btn primary" onclick="startTimer(4, 15)">▶ Start</button>
+        <button class="btn" onclick="resetTimer(4, 15)">↺ Reset</button>
+      </div>
+      <button class="btn done-btn" onclick="markDone(4)">✓ Done</button>
+    </div>
+  </div>
+</div>
+
+<div class="step" id="step-5">
+  <div class="step-header" onclick="toggleStep(5)">
+    <div class="step-check" id="check-5"></div>
+    <div class="step-title">Step 4b: Experiment – phase B</div>
+    <div class="step-time">15 min</div>
+  </div>
+  <div class="step-body">
+    <p>Continue discussing the same problem with a new rule:</p>
+    <div class="rule-box">
+      <strong>Rule for phase B:</strong><br>
+      <strong>Banned words:</strong> "but", "however", "although", "yet"<br>
+      <strong>Allowed replacements:</strong> "and at the same time…", "I'd add…", "I also see it this way…", "what if…"
+    </div>
+    <p>Write the banned words on the whiteboard. Each time someone uses one — note it, and at the end name how many times it happened.</p>
+    <div class="timer-block">
+      <div class="timer-display" id="timer-5">15:00</div>
+      <div class="timer-btns">
+        <button class="btn primary" onclick="startTimer(5, 15)">▶ Start</button>
+        <button class="btn" onclick="resetTimer(5, 15)">↺ Reset</button>
+      </div>
+      <button class="btn done-btn" onclick="markDone(5)">✓ Done</button>
+    </div>
+  </div>
+</div>
+
+<div class="step" id="step-6">
+  <div class="step-header" onclick="toggleStep(6)">
+    <div class="step-check" id="check-6"></div>
+    <div class="step-title">Step 5: Reflection on the experiment</div>
+    <div class="step-time">15 min</div>
+  </div>
+  <div class="step-body">
+    <p>Whole group together. The facilitator asks questions — writes answers on the whiteboard:</p>
+    <ol>
+      <li>What was <strong>different</strong> from a normal meeting?</li>
+      <li>What was <strong>hard</strong>? What surprised you?</li>
+      <li>What ideas <strong>emerged</strong> that would otherwise have been "swallowed by the cat"?</li>
+    </ol>
+    <div class="rule-box">💡 Don't rush. Silence is also an answer — hold it for at least 10 seconds.</div>
+    <div class="timer-block">
+      <div class="timer-display" id="timer-6">15:00</div>
+      <div class="timer-btns">
+        <button class="btn primary" onclick="startTimer(6, 15)">▶ Start</button>
+        <button class="btn" onclick="resetTimer(6, 15)">↺ Reset</button>
+      </div>
+      <button class="btn done-btn" onclick="markDone(6)">✓ Done</button>
+    </div>
+  </div>
+</div>
+
+<div class="step" id="step-7">
+  <div class="step-header" onclick="toggleStep(7)">
+    <div class="step-check" id="check-7"></div>
+    <div class="step-title">Step 6: Creating the Anti-Cat Manifesto</div>
+    <div class="step-time">10 min</div>
+  </div>
+  <div class="step-body">
+    <p>Together, formulate <strong>3 concrete rules</strong> for your communication. Write them on the whiteboard first, then type them here:</p>
+    <!-- Editable manifesto — can be filled in and printed -->
+    <div class="manifest-box">
+      <h4>🐾 Our Anti-Cat Manifesto</h4>
+      <div class="manifest-line"><span>1.</span><input class="manifest-input" type="text" placeholder='e.g. "Every idea gets 60 seconds of silence before anyone responds"'></div>
+      <div class="manifest-line"><span>2.</span><input class="manifest-input" type="text" placeholder='e.g. "We use a talking stick for key discussions"'></div>
+      <div class="manifest-line"><span>3.</span><input class="manifest-input" type="text" placeholder='e.g. "Every meeting has its Mouse — a silent observer"'></div>
+      <button class="print-btn" onclick="window.print()">🖨 Print manifesto</button>
+    </div>
+    <div class="timer-block">
+      <div class="timer-display" id="timer-7">10:00</div>
+      <div class="timer-btns">
+        <button class="btn primary" onclick="startTimer(7, 10)">▶ Start</button>
+        <button class="btn" onclick="resetTimer(7, 10)">↺ Reset</button>
+      </div>
+      <button class="btn done-btn" onclick="markDone(7)">✓ Done</button>
+    </div>
+  </div>
+</div>
+
+<!-- PART 3 -->
+<div class="section-header">Part 3 — Action commitment · 20 minutes</div>
+
+<div class="step" id="step-8">
+  <div class="step-header" onclick="toggleStep(8)">
+    <div class="step-check" id="check-8"></div>
+    <div class="step-title">Step 7 + 8: Agreement and Guardian of the Ladybirds</div>
+    <div class="step-time">10 min</div>
+  </div>
+  <div class="step-body">
+    <p><strong>Agreement on the manifesto:</strong> Everyone says "I agree" out loud, or signs the printed manifesto. A physical commitment is stronger.</p>
+    <p style="margin-top: 0.8rem;"><strong>Appointing the Guardian of the Ladybirds:</strong> Choose <strong>2 people</strong> for the next month (they can rotate between meetings).</p>
+    <div class="rule-box">
+      <strong>The Guardian's task:</strong><br>
+      Observe communication during meetings.<br>
+      At the end of each meeting, say: "Today I noticed X moments when…"<br>
+      <em>No blame — only naming.</em>
+    </div>
+    <div class="timer-block">
+      <div class="timer-display" id="timer-8">10:00</div>
+      <div class="timer-btns">
+        <button class="btn primary" onclick="startTimer(8, 10)">▶ Start</button>
+        <button class="btn" onclick="resetTimer(8, 10)">↺ Reset</button>
+      </div>
+      <button class="btn done-btn" onclick="markDone(8)">✓ Done</button>
+    </div>
+  </div>
+</div>
+
+<div class="step" id="step-9">
+  <div class="step-header" onclick="toggleStep(9)">
+    <div class="step-check" id="check-9"></div>
+    <div class="step-title">Step 9: Closing ritual</div>
+    <div class="step-time">10 min</div>
+  </div>
+  <div class="step-body">
+    <p>Go around the room. Each person <strong>completes this sentence</strong> out loud — in their own words, without interruption:</p>
+    <div class="rule-box" style="font-size: 1rem; font-style: italic;">
+      "To stop being the cat, next time I will…"
+    </div>
+    <p style="margin-top: 0.8rem;">The facilitator goes <strong>last</strong>. Nobody comments on anyone else's answer.</p>
+    <div class="rule-box">💡 If someone doesn't know, skip them and come back at the end. Silence is fine.</div>
+    <div class="timer-block">
+      <div class="timer-display" id="timer-9">10:00</div>
+      <div class="timer-btns">
+        <button class="btn primary" onclick="startTimer(9, 10)">▶ Start</button>
+        <button class="btn" onclick="resetTimer(9, 10)">↺ Reset</button>
+      </div>
+      <button class="btn done-btn" onclick="markDone(9)">✓ Done</button>
+    </div>
+  </div>
+</div>
+
+<!-- Shown automatically when all 9 steps are marked done -->
+<div class="finish-box" id="finishBox" style="display:none;">
+  <h2>🐾 Workshop complete</h2>
+  <p>The team had 90 minutes. Now it has a manifesto, a Guardian, and a different experience of what a meeting can be.<br>
+  See you in a month — what changed?</p>
+</div>
+
+<script>
+const TOTAL = 9; // Total number of steps
+
+// Tracks which steps have been marked done (index 0 unused)
+const done = new Array(TOTAL + 1).fill(false);
+
+// Stores timer state for each step: { interval, running, remaining }
+const timers = {};
+
+// Updates the progress bar and label; shows finish box when all done
+function updateProgress() {
+  const count = done.filter(Boolean).length;
+  const pct = (count / TOTAL) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = count + ' / ' + TOTAL + ' steps';
+  if (count === TOTAL) document.getElementById('finishBox').style.display = 'block';
+}
+
+// Toggles a step open/closed; closes all others first
+function toggleStep(n) {
+  const step = document.getElementById('step-' + n);
+  const isActive = step.classList.contains('active');
+  for (let i = 1; i <= TOTAL; i++) {
+    document.getElementById('step-' + i).classList.remove('active');
+  }
+  if (!isActive) step.classList.add('active');
+}
+
+// Marks a step as done, stops its timer, and opens the next step
+function markDone(n) {
+  done[n] = true;
+  const step = document.getElementById('step-' + n);
+  step.classList.remove('active');
+  step.classList.add('done');
+  document.getElementById('check-' + n).textContent = '✓';
+  // Stop this step's timer if running
+  if (timers[n]) { clearInterval(timers[n].interval); }
+  updateProgress();
+  // Automatically open the next step
+  if (n < TOTAL) {
+    document.getElementById('step-' + (n + 1)).classList.add('active');
+    document.getElementById('step-' + (n + 1)).scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+// Starts the countdown timer for a given step
+// Resumes from remaining time if timer was paused
+function startTimer(n, minutes) {
+  if (timers[n] && timers[n].running) return; // already running
+  const display = document.getElementById('timer-' + n);
+  let remaining = timers[n] ? timers[n].remaining : minutes * 60;
+  timers[n] = { running: true, remaining };
+
+  timers[n].interval = setInterval(() => {
+    remaining--;
+    timers[n].remaining = remaining;
+    if (remaining <= 0) {
+      clearInterval(timers[n].interval);
+      timers[n].running = false;
+      display.classList.add('finished');
+      display.classList.remove('running');
+      display.textContent = '⏰ time!'; // shown in red when timer ends
+      return;
+    }
+    const m = Math.floor(remaining / 60);
+    const s = remaining % 60;
+    display.textContent = m + ':' + String(s).padStart(2, '0');
+    display.classList.add('running');
+  }, 1000);
+}
+
+// Resets the timer for a given step back to its full duration
+function resetTimer(n, minutes) {
+  if (timers[n]) {
+    clearInterval(timers[n].interval);
+    timers[n] = null;
+  }
+  const display = document.getElementById('timer-' + n);
+  display.textContent = minutes + ':00';
+  display.classList.remove('running', 'finished');
+}
+
+// Open the first step automatically when the page loads
+document.getElementById('step-1').classList.add('active');
+updateProgress();
+</script>
+</body>
+</html>
+

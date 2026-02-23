@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feedback – Tomcat</title>
+    <title>Feedback – Cat</title>
     <style>
-        /* Simple, clean style that fits your cards */
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
             line-height: 1.6;
@@ -22,6 +21,7 @@
             padding-bottom: 0.5rem;
             margin-bottom: 2rem;
         }
+        /* Each question block */
         .question {
             margin-bottom: 2rem;
         }
@@ -31,7 +31,7 @@
             margin-bottom: 0.5rem;
             font-size: 1.1rem;
         }
-        textarea, input[type="email"] {
+        textarea, input[type="email"], input[type="url"] {
             width: 100%;
             padding: 0.75rem;
             border: 1px solid #ccc;
@@ -45,6 +45,7 @@
             resize: vertical;
             min-height: 100px;
         }
+        /* Helper text shown below each field */
         .helper {
             font-size: 0.9rem;
             color: #555;
@@ -62,9 +63,8 @@
             transition: background 0.2s;
             margin-top: 1rem;
         }
-        button:hover {
-            background: #333;
-        }
+        button:hover { background: #333; }
+        /* Optional fields shown at slightly reduced opacity */
         .optional {
             opacity: 0.8;
             font-size: 0.9rem;
@@ -74,79 +74,275 @@
             border: none;
             border-top: 1px solid #eee;
         }
+        /* Intro note box */
         .note {
             background: #f5f5f5;
             padding: 1rem;
             border-left: 4px solid black;
             font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        /* --- PHOTO UPLOAD ZONE --- */
+        .upload-zone {
+            border: 2px dashed #ccc;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color 0.2s, background 0.2s;
+            position: relative;
+        }
+        .upload-zone:hover, .upload-zone.drag-over {
+            border-color: #000;
+            background: #f9f9f9;
+        }
+        .upload-zone input[type="file"] {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+        }
+        .upload-icon { font-size: 2rem; margin-bottom: 0.3rem; }
+        .upload-text { font-size: 0.95rem; color: #444; }
+        .upload-text strong { color: #000; }
+        .upload-limit { font-size: 0.8rem; color: #888; margin-top: 0.3rem; }
+
+        /* PHOTO PREVIEW GRID */
+        .preview-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+        .preview-item {
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+        .preview-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: 1px solid #ddd;
+        }
+        /* Remove button on each thumbnail */
+        .preview-item .remove {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            background: #000;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.65rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+        }
+        /* Photo count label below the grid */
+        .preview-count {
+            font-size: 0.85rem;
+            color: #555;
+            margin-top: 0.4rem;
+        }
+
+        /* VIDEO LINK SECTION */
+        .video-box {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 1rem;
+        }
+        .video-box .helper { margin-top: 0.5rem; }
+        /* Suggested video hosting platforms */
+        .video-tips {
+            font-size: 0.82rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+        .video-tips span {
+            display: inline-block;
+            background: #eee;
+            padding: 0.15rem 0.5rem;
+            margin: 0.15rem 0.1rem;
+            font-style: normal;
         }
     </style>
 </head>
 <body>
 
-    <h1>🐈‍⬛ Feedback – Tomcat</h1>
+    <h1>🐈‍⬛ Feedback – Cat</h1>
 
     <div class="note">
-        ⚡ This is not a satisfaction survey. I need to know one thing: <strong>does it help?</strong> 
-        Write whatever comes to mind — briefly is fine, honestly is fine. Every sentence is a map for me.
+        ⚡ This is not a satisfaction survey. I need to know just one thing: <strong>does it help?</strong>
+        Write whatever comes to mind – brief is fine, honest is better. Every sentence is a map for me.
     </div>
 
-    <form action="https://formsubmit.co/chcesmys@gmail.com" method="POST">
-        <!-- Hidden fields for FormSubmit -->
-        <input type="hidden" name="_subject" value="Feedback – Tomcat">
-        <input type="hidden" name="_next" value="https://artmisanovak-prog.github.io/chces_MYS_slovnik_mezer/karty/Kocour/?sent=1">
+    <!--
+        FormSubmit sends all fields as an email to the address in the action URL.
+        enctype="multipart/form-data" is required for photo uploads to work.
+        To change the recipient email, update the action URL below.
+    -->
+    <form action="https://formsubmit.co/chcesmys@gmail.com" method="POST" enctype="multipart/form-data">
+
+        <!-- Hidden FormSubmit configuration fields -->
+        <input type="hidden" name="_subject" value="Feedback – Cat">
+        <input type="hidden" name="_next" value="https://artmisanovak-prog.github.io/chces_MYS_slovnik_mezer/karty/Kocour/?odeslano=1">
         <input type="hidden" name="_captcha" value="false">
 
         <!-- 1. Time -->
         <div class="question">
             <label for="time">1. ⏱️ Time</label>
-            <textarea id="time" name="time" placeholder="How much sooner did you get to things that are usually not said in the team?"></textarea>
-            <div class="helper">Feel free to estimate: "an hour", "right at the start", "not at all"...</div>
+            <textarea id="time" name="time" placeholder="How much sooner did you get to the things that usually go unspoken in your team?"></textarea>
+            <div class="helper">An estimate is fine: "about an hour", "straight away", "not at all"...</div>
         </div>
 
         <!-- 2. Clarity -->
         <div class="question">
             <label for="clarity">2. 🗣️ Clarity</label>
-            <textarea id="clarity" name="clarity" placeholder="Did everyone understand immediately what the problem was as soon as they read about the Tomcat?"></textarea>
-            <div class="helper">Was it clear right away, or only in discussion? Or not at all?</div>
+            <textarea id="clarity" name="clarity" placeholder="Did everyone immediately understand the problem once they read about the Cat?"></textarea>
+            <div class="helper">Was it clear straight away, or only after discussion? Or not at all?</div>
         </div>
 
-        <!-- 3. Usability / angles -->
+        <!-- 3. Usability of angles -->
         <div class="question">
-            <label for="usability">3. 🧩 Usability of angles</label>
-            <textarea id="usability" name="usability" placeholder="Was it difficult for you to assign those angles, or did it go intuitively?"></textarea>
-            <div class="helper">Or perhaps you didn't use them at all? I'm interested in anything.</div>
+            <label for="usability">3. 🧩 Usability of the angles</label>
+            <textarea id="usability" name="usability" placeholder="Was it hard to assign the angles, or did it come intuitively?"></textarea>
+            <div class="helper">Or did you not use them at all? Anything goes.</div>
         </div>
 
         <!-- 4. Aha moment -->
         <div class="question">
             <label for="aha">4. 💡 Aha moment</label>
-            <textarea id="aha" name="aha" placeholder="Did an angle of view appear in the discussion that no one would have thought of without the card?"></textarea>
-            <div class="helper">For example: "When you say it, yeah, we always..."</div>
+            <textarea id="aha" name="aha" placeholder="Did any perspective come up in the discussion that nobody would have thought of without the card?"></textarea>
+            <div class="helper">For example: "Now that you say it, we always used to..."</div>
         </div>
 
-        <!-- Optional space for anything else -->
+        <!-- 5. Anything else -->
         <div class="question">
             <label for="anything">✏️ Anything else?</label>
-            <textarea id="anything" name="anything" placeholder="What would you like to add? What's missing? What works great?"></textarea>
+            <textarea id="anything" name="anything" placeholder="What would you like to add? What's missing? What works really well?"></textarea>
         </div>
 
-        <!-- Optional email (in case you want to clarify something) -->
+        <hr>
+
+        <!-- 6. WORKSHOP PHOTOS (optional) -->
+        <div class="question optional">
+            <label>📸 Photos from the workshop (optional)</label>
+            <div class="upload-zone" id="uploadZone">
+                <!-- File input is invisible and covers the whole zone for easy clicking -->
+                <input type="file" name="photo" id="photoInput" accept="image/*" multiple onchange="showPreview(this)">
+                <div class="upload-icon">🖼️</div>
+                <div class="upload-text">Click or drag photos here<br><strong>max. 3 photos, up to 5 MB each</strong></div>
+                <div class="upload-limit">JPG, PNG, WEBP</div>
+            </div>
+            <!-- Thumbnails appear here after selection -->
+            <div class="preview-grid" id="previewGrid"></div>
+            <div class="preview-count" id="previewCount"></div>
+            <div class="helper">Flipchart, manifest, team at work — anything that captures the moment.</div>
+        </div>
+
+        <!-- 7. VIDEO LINK (optional) -->
+        <div class="question optional">
+            <label for="video">🎥 Video link (optional)</label>
+            <div class="video-box">
+                <input type="url" id="video" name="video_link" placeholder="https://drive.google.com/...">
+                <!-- Suggested platforms for hosting the video -->
+                <div class="video-tips">
+                    Where to host your video:
+                    <span>Google Drive</span>
+                    <span>YouTube (unlisted)</span>
+                    <span>Dropbox</span>
+                    <span>WeTransfer</span>
+                </div>
+                <div class="helper">Upload the video anywhere and paste the link here. A short clip is enough.</div>
+            </div>
+        </div>
+
+        <!-- Email (optional) -->
         <div class="question optional">
             <label for="email">📧 Your email (optional)</label>
-            <input type="email" id="email" name="email" placeholder="only if you want a reply">
-            <div class="helper">If you enter it, I can reach out if something is unclear to me.</div>
+            <input type="email" id="email" name="email" placeholder="only if you'd like a reply">
+            <div class="helper">If you add it, I can follow up if something isn't clear to me.</div>
         </div>
 
-        <button type="submit">Submit feedback</button>
+        <button type="submit">Send feedback</button>
     </form>
 
     <hr>
 
     <p style="text-align: center; color: #777; font-size: 0.9rem;">
-        Thank you. Every answer is important to me.<br>
-        (The form sends an email upon submission, nothing is stored anywhere.)
+        Thank you. Every response matters.<br>
+        (The form sends an email on submission — nothing is stored anywhere.)
     </p>
+
+<script>
+    const MAX_PHOTOS = 3; // Maximum number of photos allowed
+    let selectedPhotos = [];
+
+    // Drag & drop visual feedback
+    const zone = document.getElementById('uploadZone');
+    zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
+    zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+    zone.addEventListener('drop', e => { e.preventDefault(); zone.classList.remove('drag-over'); });
+
+    // Called when the user selects files via click or drag & drop
+    function showPreview(input) {
+        const files = Array.from(input.files);
+        const grid = document.getElementById('previewGrid');
+        const countEl = document.getElementById('previewCount');
+        grid.innerHTML = '';
+
+        if (files.length > MAX_PHOTOS) {
+            alert('Maximum ' + MAX_PHOTOS + ' photos. Only the first ' + MAX_PHOTOS + ' will be used.');
+        }
+
+        const selected = files.slice(0, MAX_PHOTOS);
+        selectedPhotos = selected;
+
+        // Build a thumbnail for each selected image
+        selected.forEach((file, i) => {
+            if (!file.type.startsWith('image/')) return;
+            const reader = new FileReader();
+            reader.onload = e => {
+                const item = document.createElement('div');
+                item.className = 'preview-item';
+                item.innerHTML = `
+                    <img src="${e.target.result}" alt="photo ${i + 1}">
+                    <button type="button" class="remove" onclick="removePhoto(${i})" title="Remove">✕</button>
+                `;
+                grid.appendChild(item);
+            };
+            reader.readAsDataURL(file);
+        });
+
+        // Update the count label
+        countEl.textContent = selected.length > 0
+            ? selected.length + ' photo' + (selected.length > 1 ? 's' : '') + ' selected'
+            : '';
+    }
+
+    // Remove a thumbnail from the preview
+    // Note: the actual file input cannot be programmatically modified for security reasons,
+    // so this only removes the visual preview. The file will still be submitted unless
+    // the user re-selects without it.
+    function removePhoto(index) {
+        const grid = document.getElementById('previewGrid');
+        const items = grid.querySelectorAll('.preview-item');
+        if (items[index]) items[index].remove();
+        selectedPhotos.splice(index, 1);
+        const countEl = document.getElementById('previewCount');
+        countEl.textContent = selectedPhotos.length > 0
+            ? selectedPhotos.length + ' photo' + (selectedPhotos.length > 1 ? 's' : '') + ' selected'
+            : '';
+    }
+</script>
 
 </body>
 </html>

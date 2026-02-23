@@ -1,4 +1,4 @@
-# 🐈‍⬛ Cat - DYSFUNCTION: **The tyranny of premature closure in communication**
+# 🐈‍⬛ TomCat - DYSFUNCTION: **The tyranny of premature closure in communication**
 
 ---
 

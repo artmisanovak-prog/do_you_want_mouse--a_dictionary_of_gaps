@@ -15,7 +15,7 @@ This card diagnoses and resolves the problem of teams where people talk over eac
 
 ---
 
-# [← Back to the main page](README.md)
+## [← Back to the main page](README.md)
 
 ---
 
@@ -106,4 +106,4 @@ Contact: **[chcesmys@gmail.com](mailto:chcesmys@gmail.com)**
 
 ---
 
-# [← Back to the main page](README.md)
+### [← Back to the main page](README.md)

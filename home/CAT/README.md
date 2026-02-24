@@ -15,16 +15,19 @@ This card diagnoses and resolves the problem of teams where people talk over eac
 
 ---
 
-<table>
-  <tr>
-    <td style="width:50%; vertical-align:top;">
-      <img src="home/CAT/data/cat.jpg" alt="Cat" style="width:100%; border-radius:8px;">
-    </td>
-    <td style="width:50%; vertical-align:top; padding-left:20px;">
-      <h3><a href="home/CAT/data/fairytale.md">How the Cat Ate Two Ladybugs and Burped Dots for Half an Hour</a></h3>
-    </td>
-  </tr>
-</table>
+<div align="center">
+
+<img src="home/CAT/data/cat.jpg" width="150" align="left" style="margin-right: 20px;">
+<br>
+**One story. Twelve truths.**
+<br>
+<hr>
+Choose a perspective and read the same story twelve different ways.
+<hr>
+👉 <a href="./home/README.md">HOME – See it through 12 angles</a>
+<hr>
+<br clear="left">
+</div>
 
 ---
 

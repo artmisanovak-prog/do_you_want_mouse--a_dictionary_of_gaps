@@ -15,6 +15,10 @@ This card diagnoses and resolves the problem of teams where people talk over eac
 
 ---
 
+![Cat](data/cat.jpg)
+
+---
+
 ## SYSTEM RULES
 
 1. **No correct** answers – only mapping

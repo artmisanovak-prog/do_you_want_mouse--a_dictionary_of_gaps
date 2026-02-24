@@ -15,26 +15,6 @@ This card diagnoses and resolves the problem of teams where people talk over eac
 
 ---
 
-<div align="center">
-
-<img src="home/CAT/data/cat.jpg" width="150" align="left" style="margin-right: 20px;">
-<br>
-**One story. Twelve truths.**
-<br>
-<hr>
-Choose a perspective and read the same story twelve different ways.
-<hr>
-👉 <a href="./home/README.md">HOME – See it through 12 angles</a>
-<hr>
-<br clear="left">
-</div>
-
----
-
-## [← Back to the main page](README.md)
-
----
-
 ## SYSTEM RULES
 
 1. **No correct** answers – only mapping

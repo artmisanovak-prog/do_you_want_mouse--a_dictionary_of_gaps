@@ -102,4 +102,3 @@ Contact: **[chcesmys@gmail.com](mailto:chcesmys@gmail.com)**
 
 ---
 
-### [← Back to the main page](README.md)

@@ -29,30 +29,30 @@
   }
   details summary::before { content: "▶ "; }
   details[open] summary::before { content: "▼ "; }
-  .pohadka-summary { background: #111; color: #fff; }
-  .pohadka-obsah {
+  .story-summary { background: #111; color: #fff; }
+  .story-content {
     padding: 1rem;
     font-size: 0.9rem;
     white-space: pre-line;
     border-top: 1px solid #111;
   }
-  .pohadka-img {
+  .story-img {
     width: 100%; max-height: 180px; object-fit: contain;
     display: block; filter: grayscale(100%); padding: 0.5rem;
   }
-  .navod-obsah, .klic-obsah { padding: 0.7rem 1rem 1rem; font-size: 0.88rem; }
-  .navod-obsah p, .klic-obsah p { margin-bottom: 0.5rem; }
-  .navod-obsah ul { margin-left: 1.2rem; }
-  .navod-obsah li { margin-bottom: 0.3rem; }
-  .klic-uhel { border-bottom: 1px solid #eee; padding: 0.5rem 0; }
-  .klic-uhel:last-child { border-bottom: none; }
-  .klic-uhel strong { display: block; }
-  .klic-uhel em { color: #555; font-size: 0.82rem; }
-  .otazky {
+  .guide-content, .key-content { padding: 0.7rem 1rem 1rem; font-size: 0.88rem; }
+  .guide-content p, .key-content p { margin-bottom: 0.5rem; }
+  .guide-content ul { margin-left: 1.2rem; }
+  .guide-content li { margin-bottom: 0.3rem; }
+  .key-angle { border-bottom: 1px solid #eee; padding: 0.5rem 0; }
+  .key-angle:last-child { border-bottom: none; }
+  .key-angle strong { display: block; }
+  .key-angle em { color: #555; font-size: 0.82rem; }
+  .questions {
     background: #f5f5f5; border-left: 3px solid #111;
     padding: 0.8rem 1rem; margin-bottom: 1.5rem; font-size: 0.9rem;
   }
-  .otazky p { margin-bottom: 0.4rem; }
+  .questions p { margin-bottom: 0.4rem; }
   .setup { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.8rem; flex-wrap: wrap; }
   .setup label { font-size: 0.9rem; }
   .setup input[type=number] {
@@ -76,63 +76,63 @@
     flex-wrap: wrap; margin-bottom: 1.2rem;
   }
   .autosave-info { font-size: 0.78rem; color: #888; font-style: italic; flex: 1; }
-  .clen-details { border: 1px solid #111; margin-bottom: 1rem; }
-  .clen-summary {
+  .member-details { border: 1px solid #111; margin-bottom: 1rem; }
+  .member-summary {
     cursor: pointer; padding: 0.7rem 1rem; font-size: 0.9rem;
     list-style: none; display: flex; align-items: center; gap: 0.5rem;
     user-select: none; background: #fafafa;
   }
-  .clen-summary::before { content: "▶ "; font-size: 0.75rem; color: #555; }
-  .clen-details[open] .clen-summary::before { content: "▼ "; }
-  .clen-summary-jmeno { font-weight: bold; flex: 1; }
-  .clen-summary-stav { font-size: 0.75rem; color: #888; font-style: italic; }
-  .stav-hotovo { color: #2a7a2a !important; font-weight: bold; }
-  .clen-telo { padding: 1rem; border-top: 1px solid #eee; }
-  .clen-hlavicka { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.8rem; }
-  .clen-jmeno {
+  .member-summary::before { content: "▶ "; font-size: 0.75rem; color: #555; }
+  .member-details[open] .member-summary::before { content: "▼ "; }
+  .member-summary-name { font-weight: bold; flex: 1; }
+  .member-summary-status { font-size: 0.75rem; color: #888; font-style: italic; }
+  .status-done { color: #2a7a2a !important; font-weight: bold; }
+  .member-body { padding: 1rem; border-top: 1px solid #eee; }
+  .member-header { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.8rem; }
+  .member-name-input {
     flex: 1; padding: 0.3rem 0.5rem; border: 1px solid #aaa;
     font-family: Georgia, serif; font-size: 0.9rem;
   }
-  .otazka-radek { margin-bottom: 0.9rem; }
-  .otazka-radek label {
+  .question-row { margin-bottom: 0.9rem; }
+  .question-row label {
     display: block; font-size: 0.8rem; font-weight: bold;
     margin-bottom: 0.3rem; color: #444;
   }
-  .otazka-radek textarea {
+  .question-row textarea {
     width: 100%; padding: 0.4rem 0.5rem; border: 1px solid #ccc;
     font-family: Georgia, serif; font-size: 0.85rem;
     resize: vertical; min-height: 50px;
   }
-  .otazka-radek select {
+  .question-row select {
     width: 100%; padding: 0.4rem 0.5rem; border: 1px solid #111;
     font-family: Georgia, serif; font-size: 0.85rem;
     background: #fff; margin-top: 0.2rem;
   }
-  .select-napoveda {
+  .select-hint {
     display: block; font-size: 0.74rem; color: #999;
     font-style: italic; margin-top: 0.2rem;
   }
-  .vysledky { margin-top: 2rem; border-top: 2px solid #111; padding-top: 1rem; }
-  .mapa-tabulka { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-bottom: 1.2rem; }
-  .mapa-tabulka th, .mapa-tabulka td { border: 1px solid #ccc; padding: 0.4rem 0.6rem; text-align: left; }
-  .mapa-tabulka th { background: #111; color: #fff; }
-  .pretizeny { background: #f0f0f0; font-weight: bold; }
-  .deficitni { color: #777; }
-  .sekce-vysledku { margin-bottom: 1.5rem; }
-  .sekce-vysledku h3 { font-size: 0.95rem; border-bottom: 1px solid #ccc; padding-bottom: 0.3rem; margin-bottom: 0.7rem; }
-  .uhel-vysledek { margin-bottom: 0.8rem; font-size: 0.88rem; }
-  .uhel-vysledek strong { display: block; }
-  .uhel-doporuceni {
+  .results { margin-top: 2rem; border-top: 2px solid #111; padding-top: 1rem; }
+  .map-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-bottom: 1.2rem; }
+  .map-table th, .map-table td { border: 1px solid #ccc; padding: 0.4rem 0.6rem; text-align: left; }
+  .map-table th { background: #111; color: #fff; }
+  .overloaded { background: #f0f0f0; font-weight: bold; }
+  .deficit { color: #777; }
+  .result-section { margin-bottom: 1.5rem; }
+  .result-section h3 { font-size: 0.95rem; border-bottom: 1px solid #ccc; padding-bottom: 0.3rem; margin-bottom: 0.7rem; }
+  .angle-result { margin-bottom: 0.8rem; font-size: 0.88rem; }
+  .angle-result strong { display: block; }
+  .angle-recommendation {
     border-left: 2px solid #111; padding-left: 0.7rem;
     margin-top: 0.3rem; color: #333; font-style: italic;
   }
-  .generativni-odkaz {
+  .generative-link {
     margin-top: 1.5rem; font-size: 0.85rem;
     border-top: 1px solid #ccc; padding-top: 1rem;
   }
-  .generativni-odkaz a { color: #111; }
+  .generative-link a { color: #111; }
   @media print {
-    .btn, .setup, .autosave-row, .nav, .select-napoveda { display: none !important; }
+    .btn, .setup, .autosave-row, .nav, .select-hint { display: none !important; }
     details[open] summary { display: none; }
   }
 </style>
@@ -149,7 +149,7 @@
 
 <details>
   <summary>🐁 Facilitator's guide (mouse)</summary>
-  <div class="navod-obsah">
+  <div class="guide-content">
     <p><strong>You are the mouse.</strong> You sit, listen, take notes. You don't judge who is right — you map how the team thinks.</p>
     <p><strong>Important before you begin:</strong></p>
     <ul>
@@ -165,17 +165,17 @@
 </details>
 
 <details>
-  <summary class="pohadka-summary">📖 The story of the cat</summary>
-  <img src="home/CAT/data.cat.jpg" alt="Cat" class="pohadka-img" onerror="this.style.display='none'">
-  <div class="pohadka-obsah" id="pohadka-text"></div>
+  <summary class="story-summary">📖 The story of the cat</summary>
+  <img src="data.cat.jpg" alt="Cat" class="story-img" onerror="this.style.display='none'">
+  <div class="story-content" id="story-text"></div>
 </details>
 
 <details>
   <summary>🔑 Angle key (for assigning)</summary>
-  <div class="klic-obsah" id="klic-uhlu-text"></div>
+  <div class="key-content" id="angle-key-text"></div>
 </details>
 
-<div class="otazky">
+<div class="questions">
   <strong>Three questions for the team (Cat):</strong>
   <p><strong>Q1 – Meaning:</strong> What do you think is the main point or message of this story?</p>
   <p><strong>Q2 – Engagement:</strong> Which specific sentence, image or moment caught your attention the most, and why?</p>
@@ -184,27 +184,27 @@
 
 <div class="setup">
   <label>Number of team members:</label>
-  <input type="number" id="pocet-clenu" min="1" max="30" value="4">
-  <button class="btn" onclick="vytvorKarty()">Create notebook</button>
+  <input type="number" id="member-count" min="1" max="30" value="4">
+  <button class="btn" onclick="createNotebook()">Create notebook</button>
 </div>
 
 <div class="autosave-row" id="autosave-row">
   <span class="autosave-info">💾 The notebook saves automatically — it survives closing the browser.</span>
-  <button class="btn-danger" onclick="smazatZapisnik()">🗑 Clear notebook</button>
+  <button class="btn-danger" onclick="clearNotebook()">🗑 Clear notebook</button>
 </div>
 
-<div id="karty-clenu"></div>
+<div id="member-cards"></div>
 
-<div id="tlacitko-vyhodnotit" style="display:none; margin-top:1rem;">
-  <button class="btn" onclick="vyhodnotit()">🐭 Evaluate – show team cognitive map</button>
+<div id="evaluate-btn" style="display:none; margin-top:1rem;">
+  <button class="btn" onclick="evaluate()">🐭 Evaluate – show team cognitive map</button>
 </div>
 
-<div id="vysledky" class="vysledky" style="display:none;"></div>
+<div id="results" class="results" style="display:none;"></div>
 
-<p class="generativni-odkaz">🔮 Want to generate a new workshop based on the cognitive map? Try <a href="generativni.html">generative mode</a>.</p>
+<p class="generative-link">🔮 Want to generate a new workshop based on the cognitive map? Try <a href="generativni.html">generative mode</a>.</p>
 
 <script>
-const POHADKA_TEXT = `ABOUT THE CAT
+const STORY_TEXT = `ABOUT THE CAT
 How the cat ate two ladybirds and burped dots for half an hour
 _________________
 
@@ -304,240 +304,240 @@ And neither of them said a word.
 
 THE END`;
 
-const KLIC_UHLY = [
-  { id:1,  nazev:"Absurd",         popis:"Looks for contradiction and paradox. The world stopped making sense — and that suits them fine." },
-  { id:2,  nazev:"Linguistic",     popis:"Hears words, rhythm, sound. Form is content for them." },
-  { id:3,  nazev:"Ironic",         popis:"Sees the gap between intention and outcome. Light sarcasm, a bitter smile." },
-  { id:4,  nazev:"Philosophical",  popis:"Looks for meaning behind meaning. Answers a question with a question." },
-  { id:5,  nazev:"Surrealist",     popis:"Connects the unconnectable. Thinks in images, not arguments." },
-  { id:6,  nazev:"Naive",          popis:"Asks simply, answers directly. A pure impression without rationalisation." },
-  { id:7,  nazev:"Introspective",  popis:"The story is a pretext for self-knowledge. Talks about themselves through the tale." },
-  { id:8,  nazev:"Concrete",       popis:"Sticks to facts. Plot is plot. Doesn't need hidden meanings." },
-  { id:9,  nazev:"Analogical",     popis:"Looks for patterns. Compares to something already known." },
-  { id:10, nazev:"Associative",    popis:"Thinks in networks. One word triggers ten more." },
-  { id:11, nazev:"Metaphorical",   popis:"Everything is a symbol of something greater. Decodes hidden meanings." },
-  { id:12, nazev:"Grotesque",      popis:"Sees the exaggerated and darkly comic. Laughter that scratches." }
+const INTERPRETATION_ANGLES = [
+  { id:1,  name:"Absurd",         desc:"Looks for contradiction and paradox. The world stopped making sense — and that suits them fine." },
+  { id:2,  name:"Linguistic",     desc:"Hears words, rhythm, sound. Form is content for them." },
+  { id:3,  name:"Ironic",         desc:"Sees the gap between intention and outcome. Light sarcasm, a bitter smile." },
+  { id:4,  name:"Philosophical",  desc:"Looks for meaning behind meaning. Answers a question with a question." },
+  { id:5,  name:"Surrealist",     desc:"Connects the unconnectable. Thinks in images, not arguments." },
+  { id:6,  name:"Naive",          desc:"Asks simply, answers directly. A pure impression without rationalisation." },
+  { id:7,  name:"Introspective",  desc:"The story is a pretext for self-knowledge. Talks about themselves through the tale." },
+  { id:8,  name:"Concrete",       desc:"Sticks to facts. Plot is plot. Doesn't need hidden meanings." },
+  { id:9,  name:"Analogical",     desc:"Looks for patterns. Compares to something already known." },
+  { id:10, name:"Associative",    desc:"Thinks in networks. One word triggers ten more." },
+  { id:11, name:"Metaphorical",   desc:"Everything is a symbol of something greater. Decodes hidden meanings." },
+  { id:12, name:"Grotesque",      desc:"Sees the exaggerated and darkly comic. Laughter that scratches." }
 ];
 
-const uhly = [
-  { id:1,  emoji:"🔚", nazev:"Physical end of sentence",
+const ANGLES = [
+  { id:1,  emoji:"🔚", name:"Physical end of sentence",
     q3:"Introduce the 'three dots rule'. When someone hints at something, they must have space to develop it. The first person to say 'full stop' only summarises — does NOT add their own conclusion." },
-  { id:2,  emoji:"⏱️", nazev:"Quasi-efficiency",
+  { id:2,  emoji:"⏱️", name:"Quasi-efficiency",
     q3:"Measure meeting success not by length but by number of open questions at the end. If all points are 'closed', we were probably cats." },
-  { id:3,  emoji:"🐞", nazev:"Unswallowable content",
+  { id:3,  emoji:"🐞", name:"Unswallowable content",
     q3:"Create an 'unswallowed noticeboard'. An anonymous place for things that were left unsaid. Regularly include them on the agenda." },
-  { id:4,  emoji:"🐀", nazev:"Observer mouse",
+  { id:4,  emoji:"🐀", name:"Observer mouse",
     q3:"Appoint a 'mouse' for each discussion. They only observe who speaks, who gets interrupted, and at the end share observations without judgement." },
-  { id:5,  emoji:"🕳️", nazev:"Permanent change",
+  { id:5,  emoji:"🕳️", name:"Permanent change",
     q3:"Deliberately create 'unfinished sentences'. The leader begins a thought and invites others to complete it." },
-  { id:6,  emoji:"🔢", nazev:"Tyranny of metrics",
+  { id:6,  emoji:"🔢", name:"Tyranny of metrics",
     q3:"Add a qualitative story to every metric. Not '14 tasks done', but 'what did those 14 dots mean for us?'." },
-  { id:7,  emoji:"🦾", nazev:"Forced consensus",
+  { id:7,  emoji:"🦾", name:"Forced consensus",
     q3:"'Silent consent' mechanism: silence after a decision automatically means DISAGREEMENT. Forces people to actively say 'I agree'." },
-  { id:8,  emoji:"🏁", nazev:"Competition over collaboration",
+  { id:8,  emoji:"🏁", name:"Competition over collaboration",
     q3:"Introduce a 'talking stick'. A physical object — only the person holding it speaks." },
-  { id:9,  emoji:"🎁", nazev:"Unfinished as a gift",
+  { id:9,  emoji:"🎁", name:"Unfinished as a gift",
     q3:"Exercise 'deliberately not finishing': 'Our problem is like…' — completing it is forbidden. Only generate beginnings." },
-  { id:10, emoji:"💔", nazev:"Communication trauma",
+  { id:10, emoji:"💔", name:"Communication trauma",
     q3:"'Communication safety audit': Do I feel safe expressing disagreement? Am I interrupted? Results → rules." },
-  { id:11, emoji:"⚫", nazev:"Strong full stop",
+  { id:11, emoji:"⚫", name:"Strong full stop",
     q3:"When closing decisions, don't ask 'Is that clear?', but 'Who feels their concerns were not heard?'." },
-  { id:12, emoji:"🍀", nazev:"Returned luck",
+  { id:12, emoji:"🍀", name:"Returned luck",
     q3:"'Ladybird ritual': whenever someone feels silenced, they place a ladybird on the table. Everyone slows down and lets them finish." }
 ];
 
-document.getElementById('pohadka-text').textContent = POHADKA_TEXT;
-document.getElementById('klic-uhlu-text').innerHTML = KLIC_UHLY.map(u => `
-  <div class="klic-uhel">
-    <strong>${u.id}. ${u.nazev}</strong>
-    <em>${u.popis}</em>
+document.getElementById('story-text').textContent = STORY_TEXT;
+document.getElementById('angle-key-text').innerHTML = INTERPRETATION_ANGLES.map(a => `
+  <div class="key-angle">
+    <strong>${a.id}. ${a.name}</strong>
+    <em>${a.desc}</em>
   </div>
 `).join('');
 
 const SAVE_KEY = 'cat_diagnostics_v1';
 
-function ulozit() {
-  const pocet = parseInt(document.getElementById('pocet-clenu').value) || 0;
-  if (pocet < 1) return;
-  const data = { pocet, clenove: [] };
-  for (let i = 1; i <= pocet; i++) {
-    const jEl = document.getElementById(`jmeno-${i}`);
-    if (!jEl) continue;
-    data.clenove.push({
-      jmeno: jEl.value,
-      o1: document.getElementById(`odpoved-${i}-1`)?.value || '',
-      o2: document.getElementById(`odpoved-${i}-2`)?.value || '',
-      o3: document.getElementById(`odpoved-${i}-3`)?.value || '',
-      u1: document.getElementById(`uhel-${i}-1`)?.value || '',
-      u2: document.getElementById(`uhel-${i}-2`)?.value || '',
-      u3: document.getElementById(`uhel-${i}-3`)?.value || '',
+function save() {
+  const count = parseInt(document.getElementById('member-count').value) || 0;
+  if (count < 1) return;
+  const data = { count, members: [] };
+  for (let i = 1; i <= count; i++) {
+    const nameEl = document.getElementById(`name-${i}`);
+    if (!nameEl) continue;
+    data.members.push({
+      name: nameEl.value,
+      a1: document.getElementById(`answer-${i}-1`)?.value || '',
+      a2: document.getElementById(`answer-${i}-2`)?.value || '',
+      a3: document.getElementById(`answer-${i}-3`)?.value || '',
+      g1: document.getElementById(`angle-${i}-1`)?.value || '',
+      g2: document.getElementById(`angle-${i}-2`)?.value || '',
+      g3: document.getElementById(`angle-${i}-3`)?.value || '',
     });
   }
   try { localStorage.setItem(SAVE_KEY, JSON.stringify(data)); } catch(e) {}
 }
 
-function nacistUlozene() {
+function loadSaved() {
   try {
     const raw = localStorage.getItem(SAVE_KEY);
     if (!raw) return;
     const data = JSON.parse(raw);
-    if (!data?.pocet) return;
-    document.getElementById('pocet-clenu').value = data.pocet;
-    vytvorKartyHTML(data.pocet);
-    data.clenove.forEach((c, idx) => {
+    if (!data?.count) return;
+    document.getElementById('member-count').value = data.count;
+    buildCardsHTML(data.count);
+    data.members.forEach((m, idx) => {
       const i = idx + 1;
-      const jEl = document.getElementById(`jmeno-${i}`);
-      if (!jEl) return;
-      jEl.value = c.jmeno || '';
-      document.getElementById(`odpoved-${i}-1`).value = c.o1 || '';
-      document.getElementById(`odpoved-${i}-2`).value = c.o2 || '';
-      document.getElementById(`odpoved-${i}-3`).value = c.o3 || '';
-      document.getElementById(`uhel-${i}-1`).value = c.u1 || '';
-      document.getElementById(`uhel-${i}-2`).value = c.u2 || '';
-      document.getElementById(`uhel-${i}-3`).value = c.u3 || '';
-      aktualizujStav(i);
+      const nameEl = document.getElementById(`name-${i}`);
+      if (!nameEl) return;
+      nameEl.value = m.name || '';
+      document.getElementById(`answer-${i}-1`).value = m.a1 || '';
+      document.getElementById(`answer-${i}-2`).value = m.a2 || '';
+      document.getElementById(`answer-${i}-3`).value = m.a3 || '';
+      document.getElementById(`angle-${i}-1`).value = m.g1 || '';
+      document.getElementById(`angle-${i}-2`).value = m.g2 || '';
+      document.getElementById(`angle-${i}-3`).value = m.g3 || '';
+      updateStatus(i);
     });
-    document.getElementById('tlacitko-vyhodnotit').style.display = 'block';
+    document.getElementById('evaluate-btn').style.display = 'block';
     document.getElementById('autosave-row').style.display = 'flex';
   } catch(e) {}
 }
 
-function smazatZapisnik() {
+function clearNotebook() {
   if (!confirm('Really clear the entire notebook? This action cannot be undone.')) return;
   try { localStorage.removeItem(SAVE_KEY); } catch(e) {}
-  document.getElementById('karty-clenu').innerHTML = '';
-  document.getElementById('tlacitko-vyhodnotit').style.display = 'none';
-  document.getElementById('vysledky').style.display = 'none';
+  document.getElementById('member-cards').innerHTML = '';
+  document.getElementById('evaluate-btn').style.display = 'none';
+  document.getElementById('results').style.display = 'none';
   document.getElementById('autosave-row').style.display = 'none';
 }
 
-function aktualizujStav(i) {
-  const jmeno = document.getElementById(`jmeno-${i}`)?.value?.trim();
-  const u1 = document.getElementById(`uhel-${i}-1`)?.value;
-  const u2 = document.getElementById(`uhel-${i}-2`)?.value;
-  const u3 = document.getElementById(`uhel-${i}-3`)?.value;
-  const prirazeno = [u1, u2, u3].filter(Boolean).length;
-  const nadpisEl = document.getElementById(`nadpis-${i}`);
-  const stavEl = document.getElementById(`stav-${i}`);
-  if (nadpisEl) nadpisEl.textContent = jmeno || `Member ${i}`;
-  if (stavEl) {
-    if (prirazeno === 3) {
-      stavEl.textContent = '✓ done';
-      stavEl.className = 'clen-summary-stav stav-hotovo';
-    } else if (prirazeno > 0) {
-      stavEl.textContent = `${prirazeno}/3 assigned`;
-      stavEl.className = 'clen-summary-stav';
+function updateStatus(i) {
+  const name = document.getElementById(`name-${i}`)?.value?.trim();
+  const g1 = document.getElementById(`angle-${i}-1`)?.value;
+  const g2 = document.getElementById(`angle-${i}-2`)?.value;
+  const g3 = document.getElementById(`angle-${i}-3`)?.value;
+  const assigned = [g1, g2, g3].filter(Boolean).length;
+  const titleEl = document.getElementById(`title-${i}`);
+  const statusEl = document.getElementById(`status-${i}`);
+  if (titleEl) titleEl.textContent = name || `Member ${i}`;
+  if (statusEl) {
+    if (assigned === 3) {
+      statusEl.textContent = '✓ done';
+      statusEl.className = 'member-summary-status status-done';
+    } else if (assigned > 0) {
+      statusEl.textContent = `${assigned}/3 assigned`;
+      statusEl.className = 'member-summary-status';
     } else {
-      stavEl.textContent = 'not filled in';
-      stavEl.className = 'clen-summary-stav';
+      statusEl.textContent = 'not filled in';
+      statusEl.className = 'member-summary-status';
     }
   }
 }
 
-const NAPOVEDA = '↑ The mouse chooses intuitively based on the core of the answer — see the Key above';
+const HINT = '↑ The mouse chooses intuitively based on the core of the answer — see the Key above';
 
-function vytvorKartyHTML(pocet) {
-  const options = uhly.map(u =>
-    `<option value="${u.id}">${u.id}. ${u.emoji} ${u.nazev}</option>`
+function buildCardsHTML(count) {
+  const options = ANGLES.map(a =>
+    `<option value="${a.id}">${a.id}. ${a.emoji} ${a.name}</option>`
   ).join('');
   const sel = `<option value="">— not selected —</option>${options}`;
   let html = '';
-  for (let i = 1; i <= pocet; i++) {
+  for (let i = 1; i <= count; i++) {
     html += `
-    <details class="clen-details" id="karta-${i}" open>
-      <summary class="clen-summary">
-        <span class="clen-summary-jmeno" id="nadpis-${i}">Member ${i}</span>
-        <span class="clen-summary-stav" id="stav-${i}">not filled in</span>
+    <details class="member-details" id="card-${i}" open>
+      <summary class="member-summary">
+        <span class="member-summary-name" id="title-${i}">Member ${i}</span>
+        <span class="member-summary-status" id="status-${i}">not filled in</span>
       </summary>
-      <div class="clen-telo">
-        <div class="clen-hlavicka">
-          <input class="clen-jmeno" type="text" id="jmeno-${i}"
+      <div class="member-body">
+        <div class="member-header">
+          <input class="member-name-input" type="text" id="name-${i}"
             placeholder="name / initials (optional)"
-            oninput="aktualizujStav(${i}); ulozit();">
+            oninput="updateStatus(${i}); save();">
         </div>
-        <div class="otazka-radek">
+        <div class="question-row">
           <label>Q1 – Meaning (what they said):</label>
-          <textarea id="odpoved-${i}-1" placeholder="Write down the answer…" oninput="ulozit();"></textarea>
-          <select id="uhel-${i}-1" onchange="aktualizujStav(${i}); ulozit();">${sel}</select>
-          <span class="select-napoveda">${NAPOVEDA}</span>
+          <textarea id="answer-${i}-1" placeholder="Write down the answer…" oninput="save();"></textarea>
+          <select id="angle-${i}-1" onchange="updateStatus(${i}); save();">${sel}</select>
+          <span class="select-hint">${HINT}</span>
         </div>
-        <div class="otazka-radek">
+        <div class="question-row">
           <label>Q2 – Engagement (what they said):</label>
-          <textarea id="odpoved-${i}-2" placeholder="Write down the answer…" oninput="ulozit();"></textarea>
-          <select id="uhel-${i}-2" onchange="aktualizujStav(${i}); ulozit();">${sel}</select>
-          <span class="select-napoveda">${NAPOVEDA}</span>
+          <textarea id="answer-${i}-2" placeholder="Write down the answer…" oninput="save();"></textarea>
+          <select id="angle-${i}-2" onchange="updateStatus(${i}); save();">${sel}</select>
+          <span class="select-hint">${HINT}</span>
         </div>
-        <div class="otazka-radek">
+        <div class="question-row">
           <label>Q3 – Application (what they said):</label>
-          <textarea id="odpoved-${i}-3" placeholder="Write down the answer…" oninput="ulozit();"></textarea>
-          <select id="uhel-${i}-3" onchange="aktualizujStav(${i}); ulozit();">${sel}</select>
-          <span class="select-napoveda">${NAPOVEDA}</span>
+          <textarea id="answer-${i}-3" placeholder="Write down the answer…" oninput="save();"></textarea>
+          <select id="angle-${i}-3" onchange="updateStatus(${i}); save();">${sel}</select>
+          <span class="select-hint">${HINT}</span>
         </div>
       </div>
     </details>`;
   }
-  document.getElementById('karty-clenu').innerHTML = html;
+  document.getElementById('member-cards').innerHTML = html;
 }
 
-function vytvorKarty() {
-  const pocet = parseInt(document.getElementById('pocet-clenu').value);
-  if (!pocet || pocet < 1) return;
+function createNotebook() {
+  const count = parseInt(document.getElementById('member-count').value);
+  if (!count || count < 1) return;
   try { localStorage.removeItem(SAVE_KEY); } catch(e) {}
-  vytvorKartyHTML(pocet);
-  document.getElementById('tlacitko-vyhodnotit').style.display = 'block';
-  document.getElementById('vysledky').style.display = 'none';
+  buildCardsHTML(count);
+  document.getElementById('evaluate-btn').style.display = 'block';
+  document.getElementById('results').style.display = 'none';
   document.getElementById('autosave-row').style.display = 'flex';
 }
 
-function vyhodnotit() {
-  const pocet = parseInt(document.getElementById('pocet-clenu').value);
-  const pocty = {};
-  uhly.forEach(u => pocty[u.id] = { count:0, nazev:u.nazev, emoji:u.emoji, q3:u.q3 });
-  let celkem = 0;
-  const detailClenu = [];
-  for (let i = 1; i <= pocet; i++) {
-    const jmeno = document.getElementById(`jmeno-${i}`)?.value?.trim() || `Member ${i}`;
-    const uhlyClena = [];
+function evaluate() {
+  const count = parseInt(document.getElementById('member-count').value);
+  const totals = {};
+  ANGLES.forEach(a => totals[a.id] = { count:0, name:a.name, emoji:a.emoji, q3:a.q3 });
+  let total = 0;
+  const memberDetails = [];
+  for (let i = 1; i <= count; i++) {
+    const name = document.getElementById(`name-${i}`)?.value?.trim() || `Member ${i}`;
+    const memberAngles = [];
     for (let q = 1; q <= 3; q++) {
-      const val = document.getElementById(`uhel-${i}-${q}`)?.value;
-      if (val) { pocty[val].count++; celkem++; uhlyClena.push(parseInt(val)); }
+      const val = document.getElementById(`angle-${i}-${q}`)?.value;
+      if (val) { totals[val].count++; total++; memberAngles.push(parseInt(val)); }
     }
-    detailClenu.push({ jmeno, uhly: uhlyClena });
+    memberDetails.push({ name, angles: memberAngles });
   }
-  if (celkem === 0) { alert('Assign at least one angle before evaluating.'); return; }
+  if (total === 0) { alert('Assign at least one angle before evaluating.'); return; }
 
-  const pretizene = [], deficitni = [], vyvazene = [], nepouzite = [];
-  uhly.forEach(u => {
-    const p = pocty[u.id];
-    p.procento = celkem > 0 ? p.count / celkem : 0;
-    if (p.count === 0)           nepouzite.push(p);
-    else if (p.procento >= 0.30) pretizene.push(p);
-    else if (p.procento <= 0.10) deficitni.push(p);
-    else                          vyvazene.push(p);
+  const overloaded = [], deficit = [], balanced = [], unused = [];
+  ANGLES.forEach(a => {
+    const p = totals[a.id];
+    p.percent = total > 0 ? p.count / total : 0;
+    if (p.count === 0)          unused.push(p);
+    else if (p.percent >= 0.30) overloaded.push(p);
+    else if (p.percent <= 0.10) deficit.push(p);
+    else                         balanced.push(p);
   });
 
   let html = `<h2>🧠 Team cognitive map</h2>`;
-  html += `<p style="font-size:0.85rem;color:#555;margin-bottom:1rem;">Total assigned: <strong>${celkem}</strong> angles from <strong>${pocet}</strong> members</p>`;
-  html += `<table class="mapa-tabulka"><tr><th>Angle</th><th>Count</th><th>%</th><th>Type</th></tr>`;
-  uhly.map(u => pocty[u.id]).sort((a,b) => b.count - a.count).forEach(p => {
-    const proc = Math.round(p.procento * 100);
-    let typ = '◇ balanced', trida = '';
-    if (p.count === 0)           { typ = '—';           trida = 'deficitni'; }
-    else if (p.procento >= 0.30) { typ = '▲ overloaded'; trida = 'pretizeny'; }
-    else if (p.procento <= 0.10) { typ = '▽ deficit';    trida = 'deficitni'; }
-    html += `<tr class="${trida}"><td>${p.emoji} ${p.nazev}</td><td>${p.count}×</td><td>${proc}%</td><td>${typ}</td></tr>`;
+  html += `<p style="font-size:0.85rem;color:#555;margin-bottom:1rem;">Total assigned: <strong>${total}</strong> angles from <strong>${count}</strong> members</p>`;
+  html += `<table class="map-table"><tr><th>Angle</th><th>Count</th><th>%</th><th>Type</th></tr>`;
+  ANGLES.map(a => totals[a.id]).sort((a,b) => b.count - a.count).forEach(p => {
+    const pct = Math.round(p.percent * 100);
+    let type = '◇ balanced', cls = '';
+    if (p.count === 0)          { type = '—';            cls = 'deficit'; }
+    else if (p.percent >= 0.30) { type = '▲ overloaded'; cls = 'overloaded'; }
+    else if (p.percent <= 0.10) { type = '▽ deficit';    cls = 'deficit'; }
+    html += `<tr class="${cls}"><td>${p.emoji} ${p.name}</td><td>${p.count}×</td><td>${pct}%</td><td>${type}</td></tr>`;
   });
   html += `</table>`;
 
-  if (pretizene.length > 0) {
-    html += `<div class="sekce-vysledku"><h3>▲ Overloaded angles (above 30%)</h3>`;
+  if (overloaded.length > 0) {
+    html += `<div class="result-section"><h3>▲ Overloaded angles (above 30%)</h3>`;
     html += `<p style="font-size:0.85rem;margin-bottom:0.7rem;">The team keeps looking the same way. What it sees, it sees well. What it doesn't see, doesn't exist.</p>`;
-    pretizene.forEach(p => {
-      const protivahy = deficitni.concat(nepouzite).slice(0, 2);
-      html += `<div class="uhel-vysledek"><strong>${p.emoji} ${p.nazev} – ${p.count}× (${Math.round(p.procento*100)}%)</strong>`;
-      if (protivahy.length > 0) {
-        html += `<div class="uhel-doporuceni">Deficit training — task for people with this angle:<br>`;
-        protivahy.forEach(def => { html += `→ <strong>${def.emoji} ${def.nazev}:</strong> ${def.q3}<br>`; });
+    overloaded.forEach(p => {
+      const counterweights = deficit.concat(unused).slice(0, 2);
+      html += `<div class="angle-result"><strong>${p.emoji} ${p.name} – ${p.count}× (${Math.round(p.percent*100)}%)</strong>`;
+      if (counterweights.length > 0) {
+        html += `<div class="angle-recommendation">Deficit training — task for people with this angle:<br>`;
+        counterweights.forEach(d => { html += `→ <strong>${d.emoji} ${d.name}:</strong> ${d.q3}<br>`; });
         html += `</div>`;
       }
       html += `</div>`;
@@ -545,37 +545,37 @@ function vyhodnotit() {
     html += `</div>`;
   }
 
-  const vsechnyDeficitni = deficitni.concat(nepouzite);
-  if (vsechnyDeficitni.length > 0) {
-    html += `<div class="sekce-vysledku"><h3>▽ Deficit angles (below 10% or not used at all)</h3>`;
+  const allDeficit = deficit.concat(unused);
+  if (allDeficit.length > 0) {
+    html += `<div class="result-section"><h3>▽ Deficit angles (below 10% or not used at all)</h3>`;
     html += `<p style="font-size:0.85rem;margin-bottom:0.7rem;">Blind spots. Perspectives the team doesn't use, even though it needs them.</p>`;
-    vsechnyDeficitni.forEach(p => {
-      html += `<div class="uhel-vysledek"><strong>${p.emoji} ${p.nazev} – ${p.count}×</strong>`;
-      html += `<div class="uhel-doporuceni">Suggested task: ${p.q3}</div></div>`;
+    allDeficit.forEach(p => {
+      html += `<div class="angle-result"><strong>${p.emoji} ${p.name} – ${p.count}×</strong>`;
+      html += `<div class="angle-recommendation">Suggested task: ${p.q3}</div></div>`;
     });
     html += `</div>`;
   }
 
-  if (vyvazene.length > 0) {
-    html += `<div class="sekce-vysledku"><h3>◇ Balanced angles – bridges</h3>`;
+  if (balanced.length > 0) {
+    html += `<div class="result-section"><h3>◇ Balanced angles – bridges</h3>`;
     html += `<p style="font-size:0.85rem;margin-bottom:0.5rem;">These people can act as translators between perspectives.</p>`;
-    const idVyvazene = vyvazene.map(v => uhly.find(u => u.nazev === v.nazev)?.id);
-    detailClenu.forEach(clen => {
-      if (clen.uhly.some(uid => idVyvazene.includes(uid))) {
-        html += `<span style="font-size:0.85rem;">→ ${clen.jmeno} &nbsp;</span>`;
+    const balancedIds = balanced.map(b => ANGLES.find(a => a.name === b.name)?.id);
+    memberDetails.forEach(m => {
+      if (m.angles.some(aid => balancedIds.includes(aid))) {
+        html += `<span style="font-size:0.85rem;">→ ${m.name} &nbsp;</span>`;
       }
     });
     html += `</div>`;
   }
 
   html += `<button class="btn btn-outline" style="margin-top:1rem;" onclick="window.print()">🖨 Print results</button>`;
-  const el = document.getElementById('vysledky');
+  const el = document.getElementById('results');
   el.innerHTML = html;
   el.style.display = 'block';
   el.scrollIntoView({ behavior: 'smooth' });
 }
 
-window.addEventListener('DOMContentLoaded', nacistUlozene);
+window.addEventListener('DOMContentLoaded', loadSaved);
 </script>
 
 </body>

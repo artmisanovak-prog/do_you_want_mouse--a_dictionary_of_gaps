@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🐈‍⬛ Cat – diagnostic mode</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, serif;
+    background: #fff;
+    color: #111;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem;
+    line-height: 1.6;
+  }
+  h1 { font-size: 1.4rem; margin-bottom: 0.3rem; }
+  h2 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; border-bottom: 1px solid #111; padding-bottom: 0.3rem; }
+  .nav { font-size: 0.85rem; margin-bottom: 1.5rem; }
+  .nav a { color: #111; }
+  details { border: 1px solid #111; margin-bottom: 1.2rem; }
+  details summary {
+    cursor: pointer;
+    padding: 0.7rem 1rem;
+    font-weight: bold;
+    list-style: none;
+    user-select: none;
+  }
+  details summary::before { content: "▶ "; }
+  details[open] summary::before { content: "▼ "; }
+  .pohadka-summary { background: #111; color: #fff; }
+  .pohadka-obsah {
+    padding: 1rem;
+    font-size: 0.9rem;
+    white-space: pre-line;
+    border-top: 1px solid #111;
+  }
+  .pohadka-img {
+    width: 100%; max-height: 180px; object-fit: contain;
+    display: block; filter: grayscale(100%); padding: 0.5rem;
+  }
+  .navod-obsah, .klic-obsah { padding: 0.7rem 1rem 1rem; font-size: 0.88rem; }
+  .navod-obsah p, .klic-obsah p { margin-bottom: 0.5rem; }
+  .navod-obsah ul { margin-left: 1.2rem; }
+  .navod-obsah li { margin-bottom: 0.3rem; }
+  .klic-uhel { border-bottom: 1px solid #eee; padding: 0.5rem 0; }
+  .klic-uhel:last-child { border-bottom: none; }
+  .klic-uhel strong { display: block; }
+  .klic-uhel em { color: #555; font-size: 0.82rem; }
+  .otazky {
+    background: #f5f5f5; border-left: 3px solid #111;
+    padding: 0.8rem 1rem; margin-bottom: 1.5rem; font-size: 0.9rem;
+  }
+  .otazky p { margin-bottom: 0.4rem; }
+  .setup { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.8rem; flex-wrap: wrap; }
+  .setup label { font-size: 0.9rem; }
+  .setup input[type=number] {
+    width: 60px; padding: 0.4rem; border: 1px solid #111;
+    font-size: 1rem; text-align: center;
+  }
+  .btn {
+    padding: 0.5rem 1.2rem; background: #111; color: #fff;
+    border: none; cursor: pointer; font-size: 0.9rem; font-family: Georgia, serif;
+  }
+  .btn:hover { background: #333; }
+  .btn-outline { background: #fff; color: #111; border: 1px solid #111; }
+  .btn-danger {
+    background: #fff; color: #aaa; border: 1px solid #ddd;
+    font-size: 0.82rem; padding: 0.3rem 0.8rem;
+    cursor: pointer; font-family: Georgia, serif;
+  }
+  .btn-danger:hover { border-color: #111; color: #111; }
+  .autosave-row {
+    display: none; align-items: center; gap: 1rem;
+    flex-wrap: wrap; margin-bottom: 1.2rem;
+  }
+  .autosave-info { font-size: 0.78rem; color: #888; font-style: italic; flex: 1; }
+  .clen-details { border: 1px solid #111; margin-bottom: 1rem; }
+  .clen-summary {
+    cursor: pointer; padding: 0.7rem 1rem; font-size: 0.9rem;
+    list-style: none; display: flex; align-items: center; gap: 0.5rem;
+    user-select: none; background: #fafafa;
+  }
+  .clen-summary::before { content: "▶ "; font-size: 0.75rem; color: #555; }
+  .clen-details[open] .clen-summary::before { content: "▼ "; }
+  .clen-summary-jmeno { font-weight: bold; flex: 1; }
+  .clen-summary-stav { font-size: 0.75rem; color: #888; font-style: italic; }
+  .stav-hotovo { color: #2a7a2a !important; font-weight: bold; }
+  .clen-telo { padding: 1rem; border-top: 1px solid #eee; }
+  .clen-hlavicka { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.8rem; }
+  .clen-jmeno {
+    flex: 1; padding: 0.3rem 0.5rem; border: 1px solid #aaa;
+    font-family: Georgia, serif; font-size: 0.9rem;
+  }
+  .otazka-radek { margin-bottom: 0.9rem; }
+  .otazka-radek label {
+    display: block; font-size: 0.8rem; font-weight: bold;
+    margin-bottom: 0.3rem; color: #444;
+  }
+  .otazka-radek textarea {
+    width: 100%; padding: 0.4rem 0.5rem; border: 1px solid #ccc;
+    font-family: Georgia, serif; font-size: 0.85rem;
+    resize: vertical; min-height: 50px;
+  }
+  .otazka-radek select {
+    width: 100%; padding: 0.4rem 0.5rem; border: 1px solid #111;
+    font-family: Georgia, serif; font-size: 0.85rem;
+    background: #fff; margin-top: 0.2rem;
+  }
+  .select-napoveda {
+    display: block; font-size: 0.74rem; color: #999;
+    font-style: italic; margin-top: 0.2rem;
+  }
+  .vysledky { margin-top: 2rem; border-top: 2px solid #111; padding-top: 1rem; }
+  .mapa-tabulka { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-bottom: 1.2rem; }
+  .mapa-tabulka th, .mapa-tabulka td { border: 1px solid #ccc; padding: 0.4rem 0.6rem; text-align: left; }
+  .mapa-tabulka th { background: #111; color: #fff; }
+  .pretizeny { background: #f0f0f0; font-weight: bold; }
+  .deficitni { color: #777; }
+  .sekce-vysledku { margin-bottom: 1.5rem; }
+  .sekce-vysledku h3 { font-size: 0.95rem; border-bottom: 1px solid #ccc; padding-bottom: 0.3rem; margin-bottom: 0.7rem; }
+  .uhel-vysledek { margin-bottom: 0.8rem; font-size: 0.88rem; }
+  .uhel-vysledek strong { display: block; }
+  .uhel-doporuceni {
+    border-left: 2px solid #111; padding-left: 0.7rem;
+    margin-top: 0.3rem; color: #333; font-style: italic;
+  }
+  .generativni-odkaz {
+    margin-top: 1.5rem; font-size: 0.85rem;
+    border-top: 1px solid #ccc; padding-top: 1rem;
+  }
+  .generativni-odkaz a { color: #111; }
+  @media print {
+    .btn, .setup, .autosave-row, .nav, .select-napoveda { display: none !important; }
+    details[open] summary { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <a href="../">← Cat</a> &nbsp;|&nbsp;
+  <a href="../../../">Want a mouse?</a>
+</div>
+
+<h1>🐈‍⬛ Cat – diagnostic mode</h1>
+<p style="font-size:0.85rem; color:#555; margin-bottom:1rem;">The tyranny of premature closure in communication</p>
+
+<details>
+  <summary>🐁 Facilitator's guide (mouse)</summary>
+  <div class="navod-obsah">
+    <p><strong>You are the mouse.</strong> You sit, listen, and take notes. You don't judge who is right — you map how the team thinks.</p>
+    <p><strong>Important before you start:</strong></p>
+    <ul>
+      <li>Cat is not a person. It is a pattern — the way a team behaves in a given moment.</li>
+      <li>The animals are patterns. The girl on the card is speech. The animal is the pattern. The text between them is space for interpretation.</li>
+      <li>Angles are not personality types. The same person looks through a different angle on a different day. This is not about labelling people.</li>
+      <li>There is no right or wrong angle. The goal is to have as many as possible — to broaden perspective.</li>
+      <li>You assign the angles — based on what you hear. Choose intuitively, according to the core of the answer.</li>
+      <li>The notebook saves continuously — it survives browser closure and page refresh.</li>
+    </ul>
+    <p>The angle key is always available — expand it below whenever you need it.</p>
+  </div>
+</details>
+
+<details>
+  <summary class="pohadka-summary">📖 The tale of the cat</summary>
+  <img src="kocour.jpg" alt="Cat" class="pohadka-img" onerror="this.style.display='none'">
+  <div class="pohadka-obsah" id="pohadka-text"></div>
+</details>
+
+<details>
+  <summary>🔑 Angle key (for assignment)</summary>
+  <div class="klic-obsah" id="klic-uhlu-text"></div>
+</details>
+
+<div class="otazky">
+  <strong>Three questions for the team (Cat):</strong>
+  <p><strong>Q1 – Meaning:</strong> What do you think is the main point or message of this story?</p>
+  <p><strong>Q2 – Engagement:</strong> Which specific sentence, image or moment caught your attention the most, and why?</p>
+  <p><strong>Q3 – Application:</strong> If this story were a guide or piece of advice, what would it tell you to do (or not do) in your professional life?</p>
+</div>
+
+<div class="setup">
+  <label>Number of team members:</label>
+  <input type="number" id="pocet-clenu" min="1" max="30" value="4">
+  <button class="btn" onclick="vytvorKarty()">Create notebook</button>
+</div>
+
+<div class="autosave-row" id="autosave-row">
+  <span class="autosave-info">💾 The notebook saves continuously — it survives browser closure and page refresh.</span>
+  <button class="btn-danger" onclick="smazatZapisnik()">🗑 Clear notebook</button>
+</div>
+
+<div id="karty-clenu"></div>
+
+<div id="tlacitko-vyhodnotit" style="display:none; margin-top:1rem;">
+  <button class="btn" onclick="vyhodnotit()">🐭 Evaluate – show team's cognitive map</button>
+</div>
+
+<div id="vysledky" class="vysledky" style="display:none;"></div>
+
+<p class="generativni-odkaz">🔮 Want to generate a new workshop based on the cognitive map? Try <a href="generativni.html">generative mode</a>.</p>
+
+<script>
+const POHADKA_TEXT = `THE TOMCAT
+How the tomcat ate two ladybugs and burped dots for half an hour
+_________________
+
+He ate two — not three, not one — two — exactly — 14 dots and it took half an hour — 30 minutes — exactly.
+
+As it came so it stopped.
+All at once.
+
+Snap and gulp and slurp — or something like that — and in the end — smack, smack — twice — exactly.
+
+There once were two ladybugs, each had seven dots, when one cat spotted them it was chaos.
+At least for them.
+
+After 14 dots
+in one instant
+the earth swallowed them.
+
+At least the tomcat with his insides, for sure.
+
+But that mouse — always curious she was.
+From an early age she would go around
+and wherever she could she would ask:
+where did the dots on the ladybugs come from?
+What are they for?
+Why don't they just create proper camouflage instead?
+
+And that exact arithmetic...
+Who actually, among all those who encounter them, counts so precisely?
+
+Well and that day — suddenly — it happened
+and the mouse had her answer.
+
+The tomcat smacked
+and then again
+and right after that
+it began.
+
+Half an hour and it was recorded — exactly.
+The tomcat was burping dots and finishing sentences!
+Sometimes whole compound sentences!!
+
+But at the same time he was cutting people off,
+by finishing what they hadn't finished themselves.
+
+He jumped into everyone's speech with the end of the sentence
+
+but always a little
+
+sometimes quite a lot
+
+sooner than the sentence was originally meant to end
+
+or — sooner than the sentence was originally meant to finish.
+
+And for the whole half hour nobody could
+no — finish.
+It wasn't possible.
+
+To everyone, before they got there,
+the tomcat had ended their sentence.
+Immediately.
+
+The cat laughed,
+but kept burping.
+And burped until he was done.
+Imagine it:
+He finished the sentence and then he stopped burping.
+
+And people could once again finish their own sentences.
+Immediately.
+
+But, as it sometimes happens,
+even though nobody knew what,
+everyone knew
+that something wasn't the same.
+
+And what once isn't the same today,
+isn't once the same ever again.
+
+Only unfinished sentences are all the same. Once, today and tomorrow.
+
+Ladybugs carry unfinished ends of sentences on them. Things that are unswallowed.
+
+The tomcat didn't know — and swallowed two.
+But the swallowed ends he burped back
+and people learned
+that not everything can be swallowed.
+And that a full stop is sometimes stronger than an entire sentence.
+
+The tomcat was fed and the mouse and the sentences remained whole.
+Thank goodness for that.
+The luck of the two ladybugs came back.
+
+But only the tomcat and the little mouse noticed.
+And neither of them said a word.
+
+THE END`;
+
+const KLIC_UHLY = [
+  { id:1,  nazev:"Absurd",         popis:"Looks for contradictions and paradoxes. The world stopped making sense — and that suits them." },
+  { id:2,  nazev:"Linguistic",     popis:"Hears words, rhythm, sound. For them, form is content." },
+  { id:3,  nazev:"Ironic",         popis:"Sees the gap between intention and outcome. Light sarcasm, a bitter smile." },
+  { id:4,  nazev:"Philosophical",  popis:"Looks for meaning behind meaning. Answers a question with another question." },
+  { id:5,  nazev:"Surrealist",     popis:"Connects the unconnectable. Thinks in images, not arguments." },
+  { id:6,  nazev:"Naive",          popis:"Asks simply, answers directly. A clean impression without rationalisation." },
+  { id:7,  nazev:"Introspective",  popis:"The story is a pretext for self-knowledge. Speaks about themselves through the tale." },
+  { id:8,  nazev:"Concrete",       popis:"Sticks to the facts. Plot is plot. Doesn't need hidden meanings." },
+  { id:9,  nazev:"Analogical",     popis:"Looks for patterns. Compares to something already known." },
+  { id:10, nazev:"Associative",    popis:"Thinks in networks. One word triggers ten more." },
+  { id:11, nazev:"Metaphorical",   popis:"Everything is a symbol of something larger. Decodes hidden meanings." },
+  { id:12, nazev:"Grotesque",      popis:"Sees the exaggerated and darkly comic. Laughter that scratches." }
+];
+
+const uhly = [
+  { id:1,  emoji:"🔚", nazev:"Physical end of the sentence",
+    q3:"Introduce the 'three dots' rule. When someone implies something, they must have space to elaborate. The first person to say 'full stop' only summarises — does NOT add their own conclusion." },
+  { id:2,  emoji:"⏱️", nazev:"Quasi-efficiency",
+    q3:"Measure meeting success not by its length, but by the number of open questions at the end. If all points are 'closed', you were probably all cats." },
+  { id:3,  emoji:"🐞", nazev:"Unswallowable content",
+    q3:"Create an 'unswallowed board'. An anonymous place for things that went unsaid. Regularly bring them into the agenda." },
+  { id:4,  emoji:"🐀", nazev:"Observer mouse",
+    q3:"Appoint a 'mouse' for each discussion. They only observe who speaks, who is interrupted, and at the end share their observations without judgement." },
+  { id:5,  emoji:"🕳️", nazev:"Permanent change",
+    q3:"Intentionally create 'unfinished sentences'. The leader starts a thought and invites others to complete it." },
+  { id:6,  emoji:"🔢", nazev:"Tyranny of metrics",
+    q3:"Add a qualitative story to every metric. Not '14 tasks done', but 'what did those 14 dots mean to us?'." },
+  { id:7,  emoji:"🦾", nazev:"Forced consensus",
+    q3:"A 'silence as consent' mechanism: silence after a decision automatically means DISAGREEMENT. This forces people to actively say 'I agree'." },
+  { id:8,  emoji:"🏁", nazev:"Competition instead of collaboration",
+    q3:"Introduce a 'speaker round'. A physical object (talking stick) — only the person holding it may speak." },
+  { id:9,  emoji:"🎁", nazev:"Unfinished as a gift",
+    q3:"Exercise: 'intentionally not finishing': 'Our problem is like…' — forbid completion. Only generate beginnings." },
+  { id:10, emoji:"💔", nazev:"Communication trauma",
+    q3:"'Communication safety audit': Do I feel safe expressing disagreement? Am I being interrupted? Results → ground rules." },
+  { id:11, emoji:"⚫", nazev:"The strong full stop",
+    q3:"When closing decisions, don't ask 'Is that clear?', but 'Who feels their concerns weren't heard?'." },
+  { id:12, emoji:"🍀", nazev:"Returned luck",
+    q3:"'Ladybug ritual': whenever someone feels they've been silenced, they place a ladybug on the table. Everyone slows down and lets them finish." }
+];
+
+document.getElementById('pohadka-text').textContent = POHADKA_TEXT;
+document.getElementById('klic-uhlu-text').innerHTML = KLIC_UHLY.map(u => `
+  <div class="klic-uhel">
+    <strong>${u.id}. ${u.nazev}</strong>
+    <em>${u.popis}</em>
+  </div>
+`).join('');
+
+const SAVE_KEY = 'kocour_diagnostika_v1';
+
+function ulozit() {
+  const pocet = parseInt(document.getElementById('pocet-clenu').value) || 0;
+  if (pocet < 1) return;
+  const data = { pocet, clenove: [] };
+  for (let i = 1; i <= pocet; i++) {
+    const jEl = document.getElementById(`jmeno-${i}`);
+    if (!jEl) continue;
+    data.clenove.push({
+      jmeno: jEl.value,
+      o1: document.getElementById(`odpoved-${i}-1`)?.value || '',
+      o2: document.getElementById(`odpoved-${i}-2`)?.value || '',
+      o3: document.getElementById(`odpoved-${i}-3`)?.value || '',
+      u1: document.getElementById(`uhel-${i}-1`)?.value || '',
+      u2: document.getElementById(`uhel-${i}-2`)?.value || '',
+      u3: document.getElementById(`uhel-${i}-3`)?.value || '',
+    });
+  }
+  try { localStorage.setItem(SAVE_KEY, JSON.stringify(data)); } catch(e) {}
+}
+
+function nacistUlozene() {
+  try {
+    const raw = localStorage.getItem(SAVE_KEY);
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    if (!data?.pocet) return;
+    document.getElementById('pocet-clenu').value = data.pocet;
+    vytvorKartyHTML(data.pocet);
+    data.clenove.forEach((c, idx) => {
+      const i = idx + 1;
+      const jEl = document.getElementById(`jmeno-${i}`);
+      if (!jEl) return;
+      jEl.value = c.jmeno || '';
+      document.getElementById(`odpoved-${i}-1`).value = c.o1 || '';
+      document.getElementById(`odpoved-${i}-2`).value = c.o2 || '';
+      document.getElementById(`odpoved-${i}-3`).value = c.o3 || '';
+      document.getElementById(`uhel-${i}-1`).value = c.u1 || '';
+      document.getElementById(`uhel-${i}-2`).value = c.u2 || '';
+      document.getElementById(`uhel-${i}-3`).value = c.u3 || '';
+      aktualizujStav(i);
+    });
+    document.getElementById('tlacitko-vyhodnotit').style.display = 'block';
+    document.getElementById('autosave-row').style.display = 'flex';
+  } catch(e) {}
+}
+
+function smazatZapisnik() {
+  if (!confirm('Really delete the entire notebook? This action cannot be undone.')) return;
+  try { localStorage.removeItem(SAVE_KEY); } catch(e) {}
+  document.getElementById('karty-clenu').innerHTML = '';
+  document.getElementById('tlacitko-vyhodnotit').style.display = 'none';
+  document.getElementById('vysledky').style.display = 'none';
+  document.getElementById('autosave-row').style.display = 'none';
+}
+
+function aktualizujStav(i) {
+  const jmeno = document.getElementById(`jmeno-${i}`)?.value?.trim();
+  const u1 = document.getElementById(`uhel-${i}-1`)?.value;
+  const u2 = document.getElementById(`uhel-${i}-2`)?.value;
+  const u3 = document.getElementById(`uhel-${i}-3`)?.value;
+  const prirazeno = [u1, u2, u3].filter(Boolean).length;
+  const nadpisEl = document.getElementById(`nadpis-${i}`);
+  const stavEl = document.getElementById(`stav-${i}`);
+  if (nadpisEl) nadpisEl.textContent = jmeno || `Member ${i}`;
+  if (stavEl) {
+    if (prirazeno === 3) {
+      stavEl.textContent = '✓ done';
+      stavEl.className = 'clen-summary-stav stav-hotovo';
+    } else if (prirazeno > 0) {
+      stavEl.textContent = `${prirazeno}/3 assigned`;
+      stavEl.className = 'clen-summary-stav';
+    } else {
+      stavEl.textContent = 'unfilled';
+      stavEl.className = 'clen-summary-stav';
+    }
+  }
+}
+
+const NAPOVEDA = '↑ The mouse chooses intuitively based on the core of the answer — see Angle Key above';
+
+function vytvorKartyHTML(pocet) {
+  const options = uhly.map(u =>
+    `<option value="${u.id}">${u.id}. ${u.emoji} ${u.nazev}</option>`
+  ).join('');
+  const sel = `<option value="">— not selected —</option>${options}`;
+  let html = '';
+  for (let i = 1; i <= pocet; i++) {
+    html += `
+    <details class="clen-details" id="karta-${i}" open>
+      <summary class="clen-summary">
+        <span class="clen-summary-jmeno" id="nadpis-${i}">Member ${i}</span>
+        <span class="clen-summary-stav" id="stav-${i}">unfilled</span>
+      </summary>
+      <div class="clen-telo">
+        <div class="clen-hlavicka">
+          <input class="clen-jmeno" type="text" id="jmeno-${i}"
+            placeholder="name / initials (optional)"
+            oninput="aktualizujStav(${i}); ulozit();">
+        </div>
+        <div class="otazka-radek">
+          <label>Q1 – Meaning (what they said):</label>
+          <textarea id="odpoved-${i}-1" placeholder="Write down the answer…" oninput="ulozit();"></textarea>
+          <select id="uhel-${i}-1" onchange="aktualizujStav(${i}); ulozit();">${sel}</select>
+          <span class="select-napoveda">${NAPOVEDA}</span>
+        </div>
+        <div class="otazka-radek">
+          <label>Q2 – Engagement (what they said):</label>
+          <textarea id="odpoved-${i}-2" placeholder="Write down the answer…" oninput="ulozit();"></textarea>
+          <select id="uhel-${i}-2" onchange="aktualizujStav(${i}); ulozit();">${sel}</select>
+          <span class="select-napoveda">${NAPOVEDA}</span>
+        </div>
+        <div class="otazka-radek">
+          <label>Q3 – Application (what they said):</label>
+          <textarea id="odpoved-${i}-3" placeholder="Write down the answer…" oninput="ulozit();"></textarea>
+          <select id="uhel-${i}-3" onchange="aktualizujStav(${i}); ulozit();">${sel}</select>
+          <span class="select-napoveda">${NAPOVEDA}</span>
+        </div>
+      </div>
+    </details>`;
+  }
+  document.getElementById('karty-clenu').innerHTML = html;
+}
+
+function vytvorKarty() {
+  const pocet = parseInt(document.getElementById('pocet-clenu').value);
+  if (!pocet || pocet < 1) return;
+  try { localStorage.removeItem(SAVE_KEY); } catch(e) {}
+  vytvorKartyHTML(pocet);
+  document.getElementById('tlacitko-vyhodnotit').style.display = 'block';
+  document.getElementById('vysledky').style.display = 'none';
+  document.getElementById('autosave-row').style.display = 'flex';
+}
+
+function vyhodnotit() {
+  const pocet = parseInt(document.getElementById('pocet-clenu').value);
+  const pocty = {};
+  uhly.forEach(u => pocty[u.id] = { count:0, nazev:u.nazev, emoji:u.emoji, q3:u.q3 });
+  let celkem = 0;
+  const detailClenu = [];
+  for (let i = 1; i <= pocet; i++) {
+    const jmeno = document.getElementById(`jmeno-${i}`)?.value?.trim() || `Member ${i}`;
+    const uhlyClena = [];
+    for (let q = 1; q <= 3; q++) {
+      const val = document.getElementById(`uhel-${i}-${q}`)?.value;
+      if (val) { pocty[val].count++; celkem++; uhlyClena.push(parseInt(val)); }
+    }
+    detailClenu.push({ jmeno, uhly: uhlyClena });
+  }
+  if (celkem === 0) { alert('Assign at least one angle before evaluating.'); return; }
+
+  const pretizene = [], deficitni = [], vyvazene = [], nepouzite = [];
+  uhly.forEach(u => {
+    const p = pocty[u.id];
+    p.procento = celkem > 0 ? p.count / celkem : 0;
+    if (p.count === 0)           nepouzite.push(p);
+    else if (p.procento >= 0.30) pretizene.push(p);
+    else if (p.procento <= 0.10) deficitni.push(p);
+    else                          vyvazene.push(p);
+  });
+
+  let html = `<h2>🧠 Team's cognitive map</h2>`;
+  html += `<p style="font-size:0.85rem;color:#555;margin-bottom:1rem;">Total assigned: <strong>${celkem}</strong> angles from <strong>${pocet}</strong> members</p>`;
+  html += `<table class="mapa-tabulka"><tr><th>Angle</th><th>Count</th><th>%</th><th>Type</th></tr>`;
+  uhly.map(u => pocty[u.id]).sort((a,b) => b.count - a.count).forEach(p => {
+    const proc = Math.round(p.procento * 100);
+    let typ = '◇ balanced', trida = '';
+    if (p.count === 0)           { typ = '—';            trida = 'deficitni'; }
+    else if (p.procento >= 0.30) { typ = '▲ overloaded'; trida = 'pretizeny'; }
+    else if (p.procento <= 0.10) { typ = '▽ deficit';    trida = 'deficitni'; }
+    html += `<tr class="${trida}"><td>${p.emoji} ${p.nazev}</td><td>${p.count}×</td><td>${proc}%</td><td>${typ}</td></tr>`;
+  });
+  html += `</table>`;
+
+  if (pretizene.length > 0) {
+    html += `<div class="sekce-vysledku"><h3>▲ Overloaded angles (above 30%)</h3>`;
+    html += `<p style="font-size:0.85rem;margin-bottom:0.7rem;">The team always looks the same way. What they see, they see well. What they don't see, doesn't exist.</p>`;
+    pretizene.forEach(p => {
+      const protivahy = deficitni.concat(nepouzite).slice(0, 2);
+      html += `<div class="uhel-vysledek"><strong>${p.emoji} ${p.nazev} – ${p.count}× (${Math.round(p.procento*100)}%)</strong>`;
+      if (protivahy.length > 0) {
+        html += `<div class="uhel-doporuceni">Deficit training — task for people with this angle:<br>`;
+        protivahy.forEach(def => { html += `→ <strong>${def.emoji} ${def.nazev}:</strong> ${def.q3}<br>`; });
+        html += `</div>`;
+      }
+      html += `</div>`;
+    });
+    html += `</div>`;
+  }
+
+  const vsechnyDeficitni = deficitni.concat(nepouzite);
+  if (vsechnyDeficitni.length > 0) {
+    html += `<div class="sekce-vysledku"><h3>▽ Deficit angles (below 10% or none)</h3>`;
+    html += `<p style="font-size:0.85rem;margin-bottom:0.7rem;">Blind spots. Perspectives the team doesn't use, even though they would need them.</p>`;
+    vsechnyDeficitni.forEach(p => {
+      html += `<div class="uhel-vysledek"><strong>${p.emoji} ${p.nazev} – ${p.count}×</strong>`;
+      html += `<div class="uhel-doporuceni">Task proposal: ${p.q3}</div></div>`;
+    });
+    html += `</div>`;
+  }
+
+  if (vyvazene.length > 0) {
+    html += `<div class="sekce-vysledku"><h3>◇ Balanced angles – bridges</h3>`;
+    html += `<p style="font-size:0.85rem;margin-bottom:0.5rem;">These people can act as interpreters between perspectives.</p>`;
+    const idVyvazene = vyvazene.map(v => uhly.find(u => u.nazev === v.nazev)?.id);
+    detailClenu.forEach(clen => {
+      if (clen.uhly.some(uid => idVyvazene.includes(uid))) {
+        html += `<span style="font-size:0.85rem;">→ ${clen.jmeno} &nbsp;</span>`;
+      }
+    });
+    html += `</div>`;
+  }
+
+  html += `<button class="btn btn-outline" style="margin-top:1rem;" onclick="window.print()">🖨 Print results</button>`;
+  const el = document.getElementById('vysledky');
+  el.innerHTML = html;
+  el.style.display = 'block';
+  el.scrollIntoView({ behavior: 'smooth' });
+}
+
+window.addEventListener('DOMContentLoaded', nacistUlozene);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐈‍⬛ Cat – Diagnostics for teams where people interrupt each other</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: Georgia, serif;
+            background: #fff;
+            color: #111;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 40px 20px;
+            border-bottom: 3px solid #111;
+            margin-bottom: 50px;
+        }
+        
+        .hero img {
+            max-width: 250px;
+            margin: 0 auto 30px;
+            display: block;
+            border: 2px solid #111;
+            filter: grayscale(100%);
+        }
+        
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        
+        .hero .problem {
+            font-size: 1.3em;
+            color: #666;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .tag {
+            display: inline-block;
+            background: #111;
+            color: #fff;
+            padding: 8px 20px;
+            font-size: 1em;
+            margin: 10px 5px;
+        }
+        
+        /* Nástroje - 2x2 grid */
+        .tools {
+            margin: 50px 0;
+        }
+        
+        .tools h2 {
+            font-size: 2em;
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #111;
+            padding-bottom: 15px;
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .tool-card {
+            border: 2px solid #111;
+            padding: 30px;
+            background: #fafafa;
+            transition: all 0.3s;
+        }
+        
+        .tool-card:hover {
+            background: #111;
+            color: #fff;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+        
+        .tool-card:hover a {
+            color: #fff;
+            border-color: #fff;
+        }
+        
+        .tool-card h3 {
+            font-size: 1.6em;
+            margin-bottom: 15px;
+        }
+        
+        .tool-card p {
+            margin-bottom: 20px;
+            font-size: 1.05em;
+        }
+        
+        .tool-card .what-you-get {
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(255,255,255,0.5);
+            border-left: 3px solid #111;
+            font-size: 0.95em;
+        }
+        
+        .tool-card:hover .what-you-get {
+            background: rgba(255,255,255,0.1);
+            border-left-color: #fff;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #fff;
+            color: #111;
+            text-decoration: none;
+            border: 2px solid #111;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background: #111;
+            color: #fff;
+        }
+        
+        .tool-card:hover .btn {
+            background: #111;
+            color: #fff;
+            border-color: #fff;
+        }
+        
+        .tool-card:hover .btn:hover {
+            background: #fff;
+            color: #111;
+        }
+        
+        /* CTA sekce */
+        .cta-section {
+            background: #111;
+            color: #fff;
+            padding: 50px 30px;
+            text-align: center;
+            margin: 50px 0;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.2em;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-cta {
+            padding: 18px 40px;
+            background: #fff;
+            color: #111;
+            text-decoration: none;
+            border: 2px solid #fff;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .btn-cta:hover {
+            background: #111;
+            color: #fff;
+        }
+        
+        /* Další karty */
+        .other-cards {
+            margin: 50px 0;
+        }
+        
+        .other-cards h2 {
+            font-size: 2em;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .other-cards .intro {
+            text-align: center;
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cards-showcase {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        
+        .card-thumb {
+            text-align: center;
+            padding: 20px;
+            border: 2px solid #ddd;
+            transition: all 0.3s;
+        }
+        
+        .card-thumb:hover {
+            border-color: #111;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+        
+        .card-thumb img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            margin-bottom: 10px;
+            filter: grayscale(100%);
+        }
+        
+        .card-thumb h4 {
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+        
+        .card-thumb p {
+            font-size: 0.85em;
+            color: #666;
+        }
+        
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 2px solid #111;
+            margin-top: 50px;
+            color: #666;
+        }
+
+        .footer a {
+            color: #111;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Responsive */
+        @media (max-width: 900px) {
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cards-showcase {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            
+            .cards-showcase {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- Hero -->
+    <div class="hero">
+        <img src="home/CAT/data/cat.jpg" alt="Cat" onerror="this.style.display='none'">
+        <h1>DO YOU WANT A MOUSE? dictionary of gaps: 🐈‍⬛ CAT</h1>
+        <p class="problem">
+            <strong>Teams where people interrupt each other.</strong><br>
+            Where thoughts get closed before they finish.<br>
+            Where the cat swallows half of what should have been said.
+        </p>
+        <div>
+            <span class="tag">COMPLETE CARD FREE</span>
+            <span class="tag">4 TOOLS</span>
+            <span class="tag">OFFLINE & ONLINE</span>
+        </div>
+    </div>
+    
+    <!-- Tools -->
+    <div class="tools">
+        <h2>What you get: 4 tools</h2>
+        
+        <div class="tools-grid">
+            
+            <!-- Story -->
+            <div class="tool-card">
+                <h3>📖 Twisted Tale</h3>
+                <p>A short story about a cat that swallows thoughts. Team reads it in 5 minutes.</p>
+                <div class="what-you-get">
+                    <strong>What you get:</strong> Shared experience. A metaphor you'll use ("it's like that cat"). Foundation for diagnostics.
+                </div>
+                <a href="https://artmisanovak-prog.github.io/do_you_want_mouse--a_dictionary_of_gaps/home/CAT/data/story.html" class="btn">→ Read the story: How the cat ate two ladybugs and croaked dots for half an hour</a>
+            </div>
+            
+            <!-- Diagnostics -->
+            <div class="tool-card">
+                <h3>🧠 Diagnostics</h3>
+                <p>Team answers 3 questions about the story. Facilitator assigns angles. Tool generates cognitive map.</p>
+                <div class="what-you-get">
+                    <strong>What you get:</strong> Map of how your team thinks. Overloaded angles (you use over and over). Deficit angles (blind spots). Specific exercise suggestions.
+                </div>
+                <a href="https://artmisanovak-prog.github.io/do_you_want_mouse--a_dictionary_of_gaps/home/CAT/data/cat-diagnostics.html" class="btn">→ Start diagnostics</a>
+            </div>
+            
+            <!-- Workshop -->
+            <div class="tool-card">
+                <h3>⚙️ 90-minute Workshop</h3>
+                <p>Workshop guide with timers, checklists, tasks. Leads you step by step from problem to solution.</p>
+                <div class="what-you-get">
+                    <strong>What you get:</strong> Structured workshop. Specific communication rules for your team. Commitments on who does what. 30-day check-in date.
+                </div>
+                <a href="https://artmisanovak-prog.github.io/do_you_want_mouse--a_dictionary_of_gaps/home/CAT/data/workshop_90_min.html" class="btn">→ Start workshop</a>
+            </div>
+            
+            <!-- Generative -->
+            <div class="tool-card">
+                <h3>🔮 Generative Mode</h3>
+                <p>Based on cognitive map, generates a NEW workshop tailored specifically to your team's deficits.</p>
+                <div class="what-you-get">
+                    <strong>What you get:</strong> Unique workshop. Exercises for your specific blind angles. You'll never get the same workshop twice.
+                </div>
+                <a href="https://artmisanovak-prog.github.io/do_you_want_mouse--a_dictionary_of_gaps/home/CAT/data/generative.html" class="btn">→ Generate workshop</a>
+            </div>
+            
+        </div>
+        
+        <p style="text-align: center; font-size: 1.1em; color: #666;">
+            + Bonus: <a href="https://artmisanovak-prog.github.io/do_you_want_mouse--a_dictionary_of_gaps/home/CAT/data/generator.html" style="color: #111;">🎲 Scenario Generator</a> for quick ideas
+        </p>
+    </div>
+    
+    <!-- CTA -->
+    <div class="cta-section">
+        <h2>! 🔥 First three brave souls: IN EXCHANGE FOR FEEDBACK</h2>
+        <p>
+            Cat is FREE. You can try all tools right now.<br>
+            <strong>In exchange for one thing: Let me know how it worked.</strong>
+        </p>
+        <div class="cta-buttons">
+            <a href="https://artmisanovak-prog.github.io/do_you_want_mouse--a_dictionary_of_gaps/home/CAT/data/feedback.html" class="btn-cta">📝 Give feedback</a>
+            <a href="https://artmisanovak-prog.github.io/do_you_want_mouse--a_dictionary_of_gaps/home/CAT/" class="btn-cta">🐈‍⬛ Full card</a>
+        </div>
+        <p style="margin-top: 30px; font-size: 0.95em; opacity: 0.8;">
+            Looking for teams to try it and tell me: HOW was it to work with the tool?<br>
+            Email: <a href="mailto:chcesmys@gmail.com" style="color: #fff; text-decoration: underline;">chcesmys@gmail.com</a>
+        </p>
+    </div>
+    
+    <!-- Other cards -->
+    <div class="other-cards">
+        <h2>Cat is part of a larger system</h2>
+        <p class="intro">
+            7+ cards. Each maps a different team dysfunction. Same principle: story → diagnostics → workshop → solution.
+        </p>
+        
+        <div class="cards-showcase">
+            <div class="card-thumb">
+                <a href="https://artmisanovak-prog.github.io/do_you_want_mouse--a_dictionary_of_gaps/home/card_samples/Flamingo/" style="text-decoration: none; color: inherit;">
+                    <img src="../../card_samples/Flamingo/flamingo.jpg" alt="Flamingo" onerror="this.style.display='none'">
+                    <h4>🦩 Flamingo</h4>
+                    <p>Irrational enthusiasm replacing direction and real planning</p>
+                </a>
+            </div>
+            
+            <div class="card-thumb">
+                <a href="https://artmisanovak-prog.github.io/do_you_want_mouse--a_dictionary_of_gaps/home/card_samples/Peacock/" style="text-decoration: none; color: inherit;">
+                    <img src="../../card_samples/Peacock/peacock.jpg" alt="Peacock" onerror="this.style.display='none'">
+                    <h4>🦚 Peacock</h4>
+                    <p>Narcissistic deformation of reality perception</p>
+                </a>
+            </div>
+            
+            <div class="card-thumb">
+                <a href="https://artmisanovak-prog.github.io/do_you_want_mouse--a_dictionary_of_gaps/home/card_samples/Fly/" style="text-decoration: none; color: inherit;">
+                    <img src="../../card_samples/Fly/fly.jpg" alt="Fly" onerror="this.style.display='none'">
+                    <h4>🪰 Fly</h4>
+                    <p>Normalized chaos and blindness to one's own problem</p>
+                </a>
+            </div>
+            
+            <div class="card-thumb">
+                <a href="https://artmisanovak-prog.github.io/do_you_want_mouse--a_dictionary_of_gaps/home/card_samples/Fish/" style="text-decoration: none; color: inherit;">
+                    <img src="../../card_samples/Fish/fish.jpg" alt="Fish" onerror="this.style.display='none'">
+                    <h4>🐟 Fish</h4>
+                    <p>Inability to distinguish authentic, systemic communication</p>
+                </a>
+            </div>
+            
+            <div class="card-thumb">
+                <a href="https://artmisanovak-prog.github.io/do_you_want_mouse--a_dictionary_of_gaps/home/card_samples/Geese/" style="text-decoration: none; color: inherit;">
+                    <img src="../../card_samples/Geese/geese.jpg" alt="Geese" onerror="this.style.display='none'">
+                    <h4>🪿 Geese</h4>
+                    <p>Collective singular and loud self-deception</p>
+                </a>
+            </div>
+            
+            <div class="card-thumb">
+                <a href="https://artmisanovak-prog.github.io/do_you_want_mouse--a_dictionary_of_gaps/home/card_samples/Antlers/" style="text-decoration: none; color: inherit;">
+                    <img src="../../card_samples/Antlers/antlers.jpg" alt="Antlers" onerror="this.style.display='none'">
+                    <h4>🦌 Antlers</h4>
+                    <p>Identity as an archive of performances</p>
+                </a>
+            </div>
+            
+            <div class="card-thumb">
+                <a href="https://artmisanovak-prog.github.io/do_you_want_mouse--a_dictionary_of_gaps/home/card_samples/Sparrow/" style="text-decoration: none; color: inherit;">
+                    <img src="../../card_samples/Sparrow/sparrow.jpg" alt="Sparrow" onerror="this.style.display='none'">
+                    <h4>🐦 Sparrow</h4>
+                    <p>Syndrome of inferior solution that became permanent burden</p>
+                </a>
+            </div>
+            
+            <div class="card-thumb">
+                <a href="https://artmisanovak-prog.github.io/do_you_want_mouse--a_dictionary_of_gaps/home/card_samples/Donkey/" style="text-decoration: none; color: inherit;">
+                    <img src="../../card_samples/Donkey/donkey.jpg" alt="Donkey" onerror="this.style.display='none'">
+                    <h4>🫏 Donkey</h4>
+                    <p>Paralysis from ambiguity and false certainty</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p><strong>Do you want a mouse?</strong> — Diagnostic system for teams</p>
+        <p style="margin-top: 15px;">
+            <a href="https://artmisanovak-prog.github.io/do_you_want_mouse--a_dictionary_of_gaps/">← Main project page</a> · 
+            <a href="https://artmisanovak-prog.github.io/do_you_want_mouse--a_dictionary_of_gaps/home/MOUSE/index.html">🐁 ABOUT MOUSE: introduction + functional tool</a> · 
+            <a href="mailto:chcesmys@gmail.com">chcesmys@gmail.com</a>
+        </p>
+    </div>
+    
+</div>
+
+</body>
+</html>

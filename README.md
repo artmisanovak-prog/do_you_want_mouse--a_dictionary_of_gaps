@@ -59,7 +59,7 @@ Stories help people understand each other faster, more precisely, and **without 
 Read [How to read like a mouse](./home/MOUSE/Mouse_demo.md)
 
 4. **Explore the sample card**  
-[Cat](./home/CAT/)  
+   [Tomcat](./home/CAT/)  
 interrupting, premature closure of ideas
 
 ---
@@ -131,7 +131,7 @@ Why?
 
 | Card | Problem | Preview | Price |
 |------|---------|---------|-------|
-| <img src="home/CAT/data/cat.jpg" width="80"><br>**Cat** | We talk over each other — ideas die before they get a chance | [Preview](./home/CAT/) | free |
+| <img src="home/CAT/data/cat.jpg" width="80"><br>**Tomcat** | We talk over each other — ideas die before they get a chance | [Preview](./home/CAT/) | free |
 | <img src="home/card_previews/Flamingo/flamingo.jpg" width="80"><br>**Flamingo** | Enthusiasm without a plan — energy that leads nowhere | [Preview](./home/card_previews/Flamingo/) | $1,600 |
 | <img src="home/card_previews/Peacock/peacock.jpg" width="80"><br>**Peacock** | We see the project through ourselves — and stop seeing reality | [Preview](./home/card_previews/Peacock/) | $1,600 |
 | <img src="home/card_previews/Fly/fly.jpg" width="80"><br>**Fly** | Chaos has become the norm — and nobody notices anymore | [Preview](./home/card_previews/Fly/) | $1,600 |
@@ -277,6 +277,10 @@ that there is never just one.
 | <img src="home/card_previews/butterfly.jpg" width="60"><br>**Butterfly** | The problem looks fine, so nobody addresses it | [I'm interested](mailto:chcesmys@gmail.com?subject=Interest%20in%20card%3A%20Butterfly) |
 | <img src="home/card_previews/tiger.jpg" width="60"><br>**Tiger** | The system wants one thing, the person is another — and nobody says it out loud | [I'm interested](mailto:chcesmys@gmail.com?subject=Interest%20in%20card%3A%20Tiger) |
 | <img src="home/card_previews/turtle.jpg" width="60"><br>**Turtle** | Two approaches contradict each other, but neither works without the other | [I'm interested](mailto:chcesmys@gmail.com?subject=Interest%20in%20card%3A%20Turtle) |
+
+---
+
+[TOMCAT landing page](home/CAT/data/landing_page_tomcat.html)
 
 ---
 

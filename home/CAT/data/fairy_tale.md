@@ -1,6 +1,9 @@
 # ABOUT THE TOMCAT
+---
 
-How the tomcat ate two ladybugs and hiccupped dots for half an hour.
+## How the tomcat ate two ladybugs and hiccupped dots for half an hour
+
+---
 
 He ate two – not three, not one – two – exactly –14 dots and it took half an hour – 30 minutes – exactly.
 It came as it went.
